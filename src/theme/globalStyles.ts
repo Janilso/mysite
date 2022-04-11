@@ -1,5 +1,5 @@
 export const globalStyles = {
     h2Regular: {
-        fonbt,
+        color: 'red',
     },
 };

@@ -18,7 +18,6 @@ const theme = createTheme(
                 main: red.A400,
             },
         },
-
         typography: {
             fontFamily: ['Exo', 'Helvetica', 'Arial'].join(','),
             body1: {
