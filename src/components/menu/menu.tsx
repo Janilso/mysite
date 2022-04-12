@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
-import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
-import { useStyles } from './styles';
+import { AppBar, Button, Container, Toolbar } from '@mui/material';
+import { styles } from './styles';
 
 interface MenuProps {
     panes: Array<{
@@ -10,29 +10,23 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ panes }) => {
-    const styles = useStyles();
-
     return (
-        <Box sx={{ flexGrow: 0 }}>
-            <AppBar position="static">
-                <Container>
-                    <Toolbar sx={{ justifyContent: 'flex-end' }}>
-                        {panes?.map(({ title, onClick }) => {
-                            return (
-                                <Button
-                                    key={title}
-                                    className={styles.root}
-                                    color="inherit"
-                                    onClick={onClick}
-                                >
-                                    {title}
-                                </Button>
-                            );
-                        })}
-                    </Toolbar>
-                </Container>
-            </AppBar>
-        </Box>
+        <AppBar position="fixed" elevation={0} sx={styles.appBar}>
+            <Container>
+                <Toolbar sx={styles.toolbar}>
+                    {panes?.map(({ title, onClick }) => (
+                        <Button
+                            key={title}
+                            sx={styles.button}
+                            color="inherit"
+                            onClick={onClick}
+                        >
+                            {title}
+                        </Button>
+                    ))}
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 };
 

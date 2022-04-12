@@ -14,12 +14,16 @@ const theme = createTheme(
             secondary: {
                 main: '#FFD717',
             },
+            text: {
+                primary: '#000000',
+            },
             error: {
                 main: red.A400,
             },
         },
         typography: {
             fontFamily: ['Exo', 'Helvetica', 'Arial'].join(','),
+
             body1: {
                 fontFamily: 'Exo',
             },

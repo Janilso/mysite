@@ -1,5 +1,6 @@
 export const globalStyles = {
-    h2Regular: {
-        color: 'red',
+    h4Regular: {
+        fontWeight: 400,
+        fontSize: 16,
     },
 };
