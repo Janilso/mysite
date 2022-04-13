@@ -1,5 +1,5 @@
-import { SxProps, Theme } from '@mui/material';
-// import { globalStyles } from '../../theme/globalStyles';
+import { Theme } from '@mui/material';
+import { globalStyles } from '../theme/globalStyles';
 
 export const styles = {
     container: (theme: Theme) => ({
@@ -9,4 +9,5 @@ export const styles = {
         justifyContent: 'flex-end',
         gap: theme.spacing(2),
     }),
+    text: globalStyles.h1Regular,
 };

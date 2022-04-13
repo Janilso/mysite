@@ -3,19 +3,28 @@ import { ptBR } from '@mui/material/locale';
 
 import { red } from '@mui/material/colors';
 
+const colors = {
+    blueDark: '#001F3F',
+    blueMedium: '#083358',
+    blueLight: '#0D63A5',
+    yellow: '#FFD717',
+};
+
 const theme = createTheme(
     {
         palette: {
+            mode: 'dark',
+            background: {
+                paper: colors.blueDark,
+                default: colors.blueDark,
+            },
             primary: {
-                main: '#001F3F',
-                dark: '#083358',
-                light: '#0D63A5',
+                main: colors.blueDark,
+                dark: colors.blueMedium,
+                light: colors.blueLight,
             },
             secondary: {
-                main: '#FFD717',
-            },
-            text: {
-                primary: '#000000',
+                main: colors.yellow,
             },
             error: {
                 main: red.A400,
