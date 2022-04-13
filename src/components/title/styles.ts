@@ -9,7 +9,9 @@ const defaultMarker = {
 
 const defaultText = {
     width: 'fit-content',
-    position: 'relative',
+    [`span`]: {
+        position: 'relative',
+    },
 };
 
 export const styles = {
@@ -25,10 +27,11 @@ export const styles = {
         width: '18%',
         height: theme.spacing(1),
     }),
-    text: {
+    text: (theme: Theme) => ({
         ...defaultText,
         ...globalStyles.h2Semibold,
-    },
+        mb: theme.spacing(5),
+    }),
     marker: (theme: Theme) => ({
         ...defaultMarker,
         background: theme.palette.secondary.main,

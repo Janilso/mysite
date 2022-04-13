@@ -40,6 +40,10 @@ const theme = createTheme(
                 fontSize: 14,
                 fontWeight: 400,
             },
+            button: {
+                fontSize: 13,
+                textTransform: 'initial',
+            },
         },
     },
     ptBR,
