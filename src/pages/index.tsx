@@ -1,6 +1,7 @@
 import { Container, Grid, Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import { useRef } from 'react';
 import images from '../assets/images';
 import Menu from '../components/menu/menu';
 import Project from '../components/project';
@@ -8,12 +9,19 @@ import Title from '../components/title';
 import { styles } from './styles';
 
 const Home: NextPage = () => {
+    const refInit = useRef<HTMLElement>();
+    const refMyHistory = useRef<HTMLElement>();
+    const refProjects = useRef<HTMLElement>();
+    // const refSkills = useRef<HTMLElement>();
+    // const refNetworks = useRef<HTMLElement>();
+
     return (
         <>
             <Menu
                 panes={[
-                    { title: 'Minha História' },
-                    { title: 'Projetos' },
+                    { title: 'Início', ref: refInit },
+                    { title: 'Minha História', ref: refMyHistory },
+                    { title: 'Projetos', ref: refProjects },
                     { title: 'Skills' },
                     { title: 'Redes' },
                 ]}
@@ -21,6 +29,7 @@ const Home: NextPage = () => {
             <Grid
                 component="section"
                 sx={[styles.container, styles.containerName]}
+                ref={(r: HTMLElement) => (refInit.current = r)}
                 container
             >
                 <Container>
@@ -45,6 +54,7 @@ const Home: NextPage = () => {
                 component="section"
                 alignItems="center"
                 sx={styles.container2}
+                ref={(r: HTMLElement) => (refMyHistory.current = r)}
                 container
             >
                 <Container>
@@ -77,6 +87,7 @@ const Home: NextPage = () => {
                 component="section"
                 alignItems="center"
                 sx={styles.container}
+                ref={(r: HTMLElement) => (refProjects.current = r)}
                 container
             >
                 <Container>

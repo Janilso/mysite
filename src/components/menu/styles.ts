@@ -11,11 +11,16 @@ export const styles = {
         gap: theme.spacing(2),
     }),
     appBar: (theme: Theme) => ({
-        boxShadow: `0 10px 35px rgba(0, 0, 0, 0.2)`,
         zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
+        transition: theme.transitions.create(
+            ['width', 'margin', 'box-shadow'],
+            {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+            },
+        ),
     }),
+    appBarScroll: {
+        boxShadow: `0 10px 35px rgba(0, 0, 0, 0.2)`,
+    },
 };

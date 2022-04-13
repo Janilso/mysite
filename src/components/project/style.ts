@@ -24,6 +24,7 @@ export const styles = {
     }),
     actions: (theme: Theme) => ({
         p: theme.spacing(2),
+        pt: 0,
         gap: theme.spacing(2),
     }),
 };
