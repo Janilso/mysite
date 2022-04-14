@@ -5,6 +5,7 @@ const defaultMarker = {
     position: 'absolute',
     right: '0',
     bottom: '-2px',
+    borderRadius: '0 5px 5px 0',
 };
 
 const defaultText = {

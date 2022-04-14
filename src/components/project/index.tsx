@@ -6,29 +6,35 @@ import {
     Typography,
     Button,
 } from '@mui/material';
+import React from 'react';
+import { goToUrl } from '../../utils/functions';
 import CustomButton from '../button';
 import { styles } from './style';
 
-const Project: React.FC = () => {
-    const project = {
-        title: 'Projeto',
-        description: `Lorem Ipsum é simplesmente uma simulação de texto da
-        indústria tipográfica e de impressos, e vem sendo utilizado
-        desde o século XVI, quando um impressor desconhecido pegou
-        uma bandeja de tipos e os embaralhou para.`,
-        technologies: ['Typescript', 'NextJS'],
-    };
-    const { title, description, technologies } = project;
+interface ProjectProps {
+    title: string;
+    description: string;
+    technologies: Array<string>;
+    repository: string;
+    view: string;
+}
 
+const Project: React.FC<ProjectProps> = ({
+    title,
+    description,
+    technologies,
+    repository,
+    view,
+}) => {
     return (
-        <Card sx={styles.content} elevation={0}>
+        <Card sx={styles.card} elevation={0}>
             <CardMedia
                 component="img"
                 height="200"
                 image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
                 alt="project Image"
             />
-            <CardContent>
+            <CardContent sx={styles.content}>
                 <Typography sx={styles.title} variant="h3">
                     {title}
                 </Typography>
@@ -37,21 +43,30 @@ const Project: React.FC = () => {
                     <Typography align="right" sx={styles.technologies}>
                         {technologies.map((tech, index) => {
                             return (
-                                <>
+                                <React.Fragment key={index}>
                                     {index !== 0 ? <mark> | </mark> : null}
                                     {tech}
-                                </>
+                                </React.Fragment>
                             );
                         })}
                     </Typography>
                 )}
             </CardContent>
             <CardActions disableSpacing sx={styles.actions}>
-                <CustomButton fullWidth>Ver</CustomButton>
-
-                <CustomButton variant="outlined" fullWidth>
-                    Repositório
-                </CustomButton>
+                {view && (
+                    <CustomButton onClick={() => goToUrl(view)} fullWidth>
+                        Ver
+                    </CustomButton>
+                )}
+                {repository && (
+                    <CustomButton
+                        onClick={() => goToUrl(repository)}
+                        variant="outlined"
+                        fullWidth
+                    >
+                        Repositório
+                    </CustomButton>
+                )}
             </CardActions>
         </Card>
     );

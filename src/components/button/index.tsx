@@ -6,12 +6,14 @@ interface ButtonTypes {
     children: ReactNode;
     variant?: 'text' | 'contained' | 'outlined' | undefined;
     fullWidth?: boolean;
+    onClick?: React.MouseEventHandler;
 }
 
 const CustomButton: React.FC<ButtonTypes> = ({
     children,
     variant = 'contained',
     fullWidth = false,
+    onClick,
 }) => {
     return (
         <Button
@@ -20,6 +22,7 @@ const CustomButton: React.FC<ButtonTypes> = ({
             size="large"
             fullWidth={fullWidth}
             sx={styles.button}
+            onClick={onClick}
         >
             {children}
         </Button>

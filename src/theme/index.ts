@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { ptBR } from '@mui/material/locale';
 
-import { red } from '@mui/material/colors';
+import { red, yellow } from '@mui/material/colors';
 
 const colors = {
     blueDark: '#001F3F',
@@ -25,6 +25,7 @@ const theme = createTheme(
             },
             secondary: {
                 main: colors.yellow,
+                dark: yellow[400],
             },
             error: {
                 main: red.A400,

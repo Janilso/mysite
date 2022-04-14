@@ -9,6 +9,7 @@ export const styles = {
     description: (theme: Theme) => ({
         ...globalStyles.h4Regular,
         mt: theme.spacing(2),
+        flex: 1,
     }),
     technologies: (theme: Theme) => ({
         ...globalStyles.h5Regular,
@@ -18,9 +19,17 @@ export const styles = {
             background: 'transparent',
         },
     }),
-    content: (theme: Theme) => ({
+    content: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: ' column',
+    },
+    card: (theme: Theme) => ({
         background: theme.palette.primary.dark,
         maxWidth: 375,
+        display: 'flex',
+        flexDirection: ' column',
+        height: '100%',
     }),
     actions: (theme: Theme) => ({
         p: theme.spacing(2),
