@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Typography } from '@mui/material';
+import { Button, Container, Grid, Theme, Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import { useRef, useState } from 'react';
 import icon from '../src/assets/icons';
@@ -8,8 +8,8 @@ import IconSkill from '../src/components/iconSkill';
 import Menu from '../src/components/menu/menu';
 import Project from '../src/components/project';
 import Title from '../src/components/title';
+import { globalStyles } from '../src/theme/globalStyles';
 import { getMyAge, loadMore } from '../src/utils/functions';
-import { styles } from './styles';
 
 // https://api.github.com/users/janilso/repos
 
@@ -67,6 +67,37 @@ const networks = [
     link: 'mailto:janilsorodrigues10@gmail.com',
   },
 ];
+
+const styles = {
+  containerName: (theme: Theme) => ({
+    mt: theme.spacing(8),
+  }),
+  container: (theme: Theme) => ({
+    py: theme.spacing(8),
+  }),
+  container2: (theme: Theme) => ({
+    py: theme.spacing(8),
+    background: theme.palette.primary.dark,
+  }),
+  more: (theme: Theme) => ({
+    mt: theme.spacing(4),
+  }),
+  text: globalStyles.h1Regular,
+  textAbout: (theme: Theme) => ({
+    ...globalStyles.h3Regular,
+    [`mark`]: {
+      color: theme.palette.secondary.main,
+      background: 'transparent',
+    },
+  }),
+  networks: (theme: Theme) => ({
+    display: 'flex',
+    gap: theme.spacing(3),
+    ['img']: {
+      width: '45px',
+    },
+  }),
+};
 
 const Home: NextPage = () => {
   const refInit = useRef<HTMLElement>();

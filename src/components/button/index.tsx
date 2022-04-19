@@ -3,30 +3,30 @@ import React, { ReactNode } from 'react';
 import { styles } from './styles';
 
 interface ButtonTypes {
-    children: ReactNode;
-    variant?: 'text' | 'contained' | 'outlined' | undefined;
-    fullWidth?: boolean;
-    onClick?: React.MouseEventHandler;
+  children: ReactNode;
+  variant?: 'text' | 'contained' | 'outlined' | undefined;
+  fullWidth?: boolean;
+  onClick?: React.MouseEventHandler;
 }
 
 const CustomButton: React.FC<ButtonTypes> = ({
-    children,
-    variant = 'contained',
-    fullWidth = false,
-    onClick,
+  children,
+  variant = 'contained',
+  fullWidth = false,
+  onClick,
 }) => {
-    return (
-        <Button
-            color="secondary"
-            variant={variant}
-            size="large"
-            fullWidth={fullWidth}
-            sx={styles.button}
-            onClick={onClick}
-        >
-            {children}
-        </Button>
-    );
+  return (
+    <Button
+      color="secondary"
+      variant={variant}
+      size="large"
+      fullWidth={fullWidth}
+      sx={styles.button}
+      onClick={onClick}
+    >
+      {children}
+    </Button>
+  );
 };
 
 export default CustomButton;
