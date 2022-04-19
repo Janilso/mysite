@@ -1,5 +1,6 @@
 import { Button, Container, Grid, Theme, Typography } from '@mui/material';
 import type { NextPage } from 'next';
+import Image from 'next/image';
 import { useRef, useState } from 'react';
 import icon from '../src/assets/icons';
 import images from '../src/assets/images';
@@ -93,9 +94,6 @@ const styles = {
   networks: (theme: Theme) => ({
     display: 'flex',
     gap: theme.spacing(3),
-    ['img']: {
-      width: '45px',
-    },
   }),
 };
 
@@ -135,7 +133,12 @@ const Home: NextPage = () => {
               <Typography sx={styles.text}>Um programador web!</Typography>
             </Grid>
             <Grid xs container item justifyContent="flex-end">
-              <img src={images.programing} />
+              <Image
+                alt="Janilso Programing"
+                width={375}
+                height={440}
+                src={images.programing}
+              />
             </Grid>
           </Grid>
         </Container>
@@ -151,7 +154,12 @@ const Home: NextPage = () => {
         <Container>
           <Grid alignItems="center" container>
             <Grid xs item>
-              <img src={images.history} />
+              <Image
+                alt="Janilso History"
+                width={451}
+                height={317}
+                src={images.history}
+              />
             </Grid>
             <Grid xs={6} direction="column" item container>
               <Title>Minha História</Title>
@@ -299,7 +307,12 @@ const Home: NextPage = () => {
             <Grid sx={styles.networks} item>
               {networks.map(({ image, link }, i) => (
                 <Button LinkComponent="a" href={link} target="_blank" key={i}>
-                  <img src={image} />
+                  <Image
+                    alt="Janilso Neworks"
+                    width={45}
+                    height={45}
+                    src={image}
+                  />
                 </Button>
               ))}
             </Grid>

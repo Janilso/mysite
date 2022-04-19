@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
       <Html lang="pt-br">
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="shortcut ico" href="/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700&display=swap"
             rel="stylesheet"
