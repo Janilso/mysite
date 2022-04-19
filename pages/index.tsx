@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import icon from '../src/assets/icons';
 import images from '../src/assets/images';
+import AnimatedContent from '../src/components/animatedContent';
 import CustomButton from '../src/components/button';
 import IconSkill from '../src/components/iconSkill';
 import Menu from '../src/components/menu/menu';
@@ -72,18 +73,29 @@ const networks = [
 const styles = {
   containerName: (theme: Theme) => ({
     mt: theme.spacing(8),
+    minHeight: 790,
+    [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
   }),
   container: (theme: Theme) => ({
-    py: theme.spacing(8),
+    py: theme.spacing(5),
   }),
   container2: (theme: Theme) => ({
-    py: theme.spacing(8),
+    py: theme.spacing(5),
     background: theme.palette.primary.dark,
+  }),
+  minHeightContainer: (theme: Theme) => ({
+    minHeight: 855,
+    [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
   }),
   more: (theme: Theme) => ({
     mt: theme.spacing(4),
   }),
-  text: globalStyles.h1Regular,
+  text: (theme: Theme) => ({
+    ...globalStyles.h1Regular,
+    [theme.breakpoints.down('sm')]: {
+      ...globalStyles.h1RegularMobile,
+    },
+  }),
   textAbout: (theme: Theme) => ({
     ...globalStyles.h3Regular,
     [`mark`]: {
@@ -121,24 +133,36 @@ const Home: NextPage = () => {
       />
       <Grid
         component="section"
+        alignItems="center"
         sx={[styles.container, styles.containerName]}
         ref={(r: HTMLElement) => (refInit.current = r)}
         container
       >
         <Container>
           <Grid alignItems="center" container>
-            <Grid xs={6} direction="column" item container>
-              <Typography sx={styles.text}>Olá! Me chamo</Typography>
+            <Grid md={6} xs={12} direction="column" item container>
+              <Typography textAlign={{ md: 'center' }} sx={styles.text}>
+                Olá! Me chamo
+              </Typography>
               <Title type="main">Janilso Rodrigues</Title>
-              <Typography sx={styles.text}>Um programador web!</Typography>
+              <Typography sx={styles.text}>Sou um programador!</Typography>
             </Grid>
-            <Grid xs container item justifyContent="flex-end">
-              <Image
-                alt="Janilso Programing"
-                width={375}
-                height={440}
-                src={images.programing}
-              />
+            <Grid
+              md
+              xs={12}
+              container
+              item
+              justifyContent={{ md: 'flex-end', xs: 'center' }}
+            >
+              <AnimatedContent>
+                <Image
+                  alt="Janilso Programing"
+                  width={375}
+                  height={440}
+                  src={images.programing}
+                  priority
+                />
+              </AnimatedContent>
             </Grid>
           </Grid>
         </Container>
@@ -147,20 +171,23 @@ const Home: NextPage = () => {
       <Grid
         component="section"
         alignItems="center"
-        sx={styles.container2}
+        sx={[styles.container2, styles.minHeightContainer]}
         ref={(r: HTMLElement) => (refMyHistory.current = r)}
         container
       >
         <Container>
           <Grid alignItems="center" container>
             <Grid xs item>
-              <Image
-                alt="Janilso History"
-                width={451}
-                height={317}
-                src={images.history}
-              />
+              <AnimatedContent type="moving">
+                <Image
+                  alt="Janilso History"
+                  width={451}
+                  height={317}
+                  src={images.history}
+                />
+              </AnimatedContent>
             </Grid>
+
             <Grid xs={6} direction="column" item container>
               <Title>Minha História</Title>
               <Typography align="justify" sx={styles.textAbout}>
@@ -183,7 +210,7 @@ const Home: NextPage = () => {
       <Grid
         component="section"
         alignItems="center"
-        sx={styles.container}
+        sx={[styles.container, styles.minHeightContainer]}
         ref={(r: HTMLElement) => (refProjects.current = r)}
         container
       >
