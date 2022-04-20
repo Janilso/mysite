@@ -349,11 +349,22 @@ const Home: NextPage = () => {
         container
       >
         <Container>
-          <Grid justifyContent="space-between" container>
-            <Grid xs={4} direction="column" item container>
+          <Grid justifyContent="space-between" container gap={{ xs: 4, md: 0 }}>
+            <Grid
+              md={4}
+              xs={12}
+              direction="column"
+              alignItems={{ xs: 'center', md: 'flex-start' }}
+              item
+              container
+            >
               <Title>Skills</Title>
-              <Typography sx={styles.textAbout}>
-                Ao lado estou exibindo algumas habilidades que tenho.
+              <Typography
+                textAlign={{ xs: 'center', lg: 'left' }}
+                sx={styles.textAbout}
+              >
+                {isMd ? 'Abaixo' : 'Ao lado'} estou exibindo algumas habilidades
+                que tenho.
               </Typography>
             </Grid>
 
