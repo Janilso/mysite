@@ -216,15 +216,15 @@ const Home: NextPage = () => {
               <Title>Minha História</Title>
               <Typography align="justify" sx={styles.textAbout}>
                 Sou o Janilso Rodrigues, tenho {getMyAge()} anos. Sou
-                desenvolvedor <mark>web frontend pleno</mark>, que gosta de se
-                aventurar no mobile, e um pouco no bakend. Sou um Maranhense que
-                iniciou o Curso de <mark>Sistemas de Informação</mark>,
+                desenvolvedor <mark>web front-end pleno</mark>, que gosta de se
+                aventurar no mobile, e um pouco no back-end. Sou um Maranhense
+                que iniciou o Curso de <mark>Sistemas de Informação</mark>,
                 conseguiu uma oportunidade de emprego em São Paulo e decidiu
                 arriscar. Me mudei, transferi o curso para SP e estou nos
                 últimos semestres! Gosto muito de estar atento às{' '}
                 <mark>tendências do mercado</mark>, haja vista que na área de
-                tecnologia, temos sempre que nos mantermos{' '}
-                <mark>atualizados</mark>.
+                tecnologia, temos sempre que nos manter <mark>atualizados</mark>
+                .
               </Typography>
             </Grid>
           </Grid>
@@ -244,6 +244,9 @@ const Home: NextPage = () => {
             alignItems="center"
             justifyContent="center"
             container
+            sx={{
+              transition: 'all 2s ease-in-out',
+            }}
           >
             <Grid xs item>
               <Title>Projetos</Title>
@@ -251,6 +254,7 @@ const Home: NextPage = () => {
             <Grid
               spacing={{ md: 4, xs: 0 }}
               sx={styles.projectsResponsive}
+              justifyContent="center"
               item
               container
             >
@@ -304,12 +308,16 @@ const Home: NextPage = () => {
             >
               <Title>Skills</Title>
               <Typography
-                textAlign={{ xs: 'center', lg: 'left' }}
+                textAlign={{ xs: 'center', md: 'left' }}
                 sx={styles.textAbout}
               >
                 {isMd ? 'Abaixo' : 'Ao lado'} estou exibindo algumas habilidades
                 que tenho.
-                {isMd && ' (Clique no ícone para ver mais)'}
+                <mark>
+                  {isMd
+                    ? ' (Clique nos ícones para ver mais)'
+                    : ' (Passe o mouse sobre os ícones para ver mais)'}
+                </mark>
               </Typography>
             </Grid>
 
