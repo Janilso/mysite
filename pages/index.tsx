@@ -309,6 +309,7 @@ const Home: NextPage = () => {
               >
                 {isMd ? 'Abaixo' : 'Ao lado'} estou exibindo algumas habilidades
                 que tenho.
+                {isMd && '(Clique no ícone para ver mais)'}
               </Typography>
             </Grid>
 
