@@ -71,13 +71,14 @@ const Title: React.FC<TitleProps> = ({ type = 'default', children }) => {
   return (
     <Typography
       variant={isDefault ? 'h3' : 'h1'}
+      textAlign={{ xs: 'center', lg: 'left' }}
       sx={
         isDefault
           ? styles.text
           : [/* animationText(children?.toString()?.length), */ styles.textMain]
       }
     >
-      <span aria-label={children?.toString()}>
+      <span>
         {
           /* isDefault
           ? */ children

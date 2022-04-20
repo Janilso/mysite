@@ -32,7 +32,7 @@ const Project: React.FC<ProjectProps> = ({
         component="img"
         height="200"
         image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-        alt="project Image"
+        alt="Project Image"
       />
       <CardContent sx={styles.content}>
         <Typography sx={styles.title} variant="h3">

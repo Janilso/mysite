@@ -23,6 +23,7 @@ export const styles = {
     color: theme.palette.secondary.main,
     [theme.breakpoints.down('sm')]: {
       fontSize: 50,
+      my: theme.spacing(1),
     },
   }),
   markerMain: (theme: Theme) => ({
@@ -35,6 +36,10 @@ export const styles = {
     ...defaultText,
     ...globalStyles.h2Semibold,
     mb: theme.spacing(5),
+    [theme.breakpoints.down('sm')]: {
+      ...globalStyles.h1SemiboldMobile,
+      mb: theme.spacing(3),
+    },
   }),
   marker: (theme: Theme) => ({
     ...defaultMarker,

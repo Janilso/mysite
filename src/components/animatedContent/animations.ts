@@ -37,7 +37,7 @@ const movingAnimate = {
 
 const movingAnimateResponsive = (theme: Theme) => ({
   [theme.breakpoints.down('md')]: {
-    right: '5px',
+    left: '-10px',
   },
 });
 
