@@ -383,14 +383,16 @@ const Home: NextPage = () => {
 
             <Grid sx={styles.networks} item>
               {networks.map(({ image, link }, i) => (
-                <Button LinkComponent="a" href={link} target="_blank" key={i}>
-                  <Image
-                    alt="Janilso Neworks"
-                    width={45}
-                    height={45}
-                    src={image}
-                  />
-                </Button>
+                <AnimatedContent type="rotateHover" boxed={false} key={i}>
+                  <Button LinkComponent="a" href={link} target="_blank">
+                    <Image
+                      alt="Janilso Neworks"
+                      width={45}
+                      height={45}
+                      src={image}
+                    />
+                  </Button>
+                </AnimatedContent>
               ))}
             </Grid>
           </Grid>

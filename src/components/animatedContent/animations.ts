@@ -4,7 +4,6 @@ const rotateAnimate = {
   animation: 'rotate 5s ease infinite',
   position: 'relative',
   right: '20px',
-
   '@keyframes rotate': {
     '20%': {
       transform: 'translate(0, 10px) rotate(5deg)',
@@ -41,11 +40,27 @@ const movingAnimateResponsive = (theme: Theme) => ({
   },
 });
 
+const rotateHoverAnimate = {
+  position: 'relative',
+  transition: 'all 1s cubic-bezier(0.61, -0.49, 0.37, 1.27) ',
+  ':hover': {
+    transform: 'rotate(360deg)',
+  },
+};
+
+const rotateHoverAnimateResponsive = (theme: Theme) => ({
+  [theme.breakpoints.down('md')]: {
+    // left: '-10px',
+  },
+});
+
 const animations = {
   rotateAnimate,
   rotateAnimateResponsive,
   movingAnimate,
   movingAnimateResponsive,
+  rotateHoverAnimate,
+  rotateHoverAnimateResponsive,
 };
 
 export default animations;

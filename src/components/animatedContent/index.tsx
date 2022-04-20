@@ -1,9 +1,9 @@
-import { Box, Theme } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { ReactElement } from 'react';
 import animations from './animations';
 
 interface AnimatedContentProps {
-  type?: 'rotate' | 'moving';
+  type?: 'rotate' | 'moving' | 'rotateHover';
   children: ReactElement;
   boxed?: boolean;
 }
