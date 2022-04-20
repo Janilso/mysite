@@ -55,4 +55,17 @@ const networks = [
   },
 ];
 
-export { networks, projects };
+const skillsText = {
+  css: 'CSS 3',
+  dart: 'Dart',
+  flutter: 'Flutter',
+  git: 'Git',
+  html: 'HTML 5',
+  javascript: 'Javascript',
+  nextjs: 'NextJS',
+  reactjs: 'ReactJS',
+  sass: 'Sass',
+  typescript: 'Typescript',
+};
+
+export { networks, projects, skillsText };

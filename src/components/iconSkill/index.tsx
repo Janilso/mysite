@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import icon from '../../assets/icons';
+import { skillsText } from '../../utils/constants';
 import { styles } from './styles';
 
 interface IconSkillProps {
@@ -9,8 +10,6 @@ interface IconSkillProps {
     | 'dart'
     | 'flutter'
     | 'git'
-    | 'github'
-    | 'gmail'
     | 'html'
     | 'javascript'
     | 'nextjs'
@@ -24,6 +23,8 @@ const IconSkill: React.FC<IconSkillProps> = ({ type = 'html' }) => {
   return (
     <Box sx={styles.container}>
       <Image alt={`Janilso ${type}`} width={88} height={88} src={skillIcon} />
+      <Typography>{skillsText[type]}</Typography>
+      <Box />
     </Box>
   );
 };
