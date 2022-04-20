@@ -1,3 +1,5 @@
+import { projectsText } from './constants';
+
 const loadMore = (array: Array<any>, range: number, add: number) => {
   return array?.length > range + add ? range + add : array?.length ?? range;
 };
@@ -11,4 +13,6 @@ const getMyAge = () => {
   return Math.abs(age_dt.getUTCFullYear() - 1970);
 };
 
-export { loadMore, goToUrl, getMyAge };
+const getProjectName = (name: string = '') => projectsText?.[name] ?? name;
+
+export { loadMore, goToUrl, getMyAge, getProjectName };

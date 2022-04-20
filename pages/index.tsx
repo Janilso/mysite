@@ -1,3 +1,4 @@
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import {
   Button,
   Container,
@@ -19,13 +20,13 @@ import Menu from '../src/components/menu/menu';
 import Project from '../src/components/project';
 import Title from '../src/components/title';
 import { globalStyles } from '../src/theme/globalStyles';
-import { networks, projects } from '../src/utils/constants';
+import { networks } from '../src/utils/constants';
 import { getMyAge, loadMore } from '../src/utils/functions';
 
 const styles = {
   containerName: (theme: Theme) => ({
     mt: theme.spacing(8),
-    minHeight: 790,
+    minHeight: 'calc(100vh - 64px)',
     [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
   }),
   container: (theme: Theme) => ({
@@ -36,7 +37,7 @@ const styles = {
     background: theme.palette.primary.dark,
   }),
   minHeightContainer: (theme: Theme) => ({
-    minHeight: 855,
+    minHeight: 'calc(100vh - 64px)',
     [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
   }),
   more: (theme: Theme) => ({
@@ -101,7 +102,18 @@ const styles = {
   }),
 };
 
-const Home: NextPage = () => {
+interface NextPageProps {
+  projects: Array<{
+    name: string;
+    image: string;
+    description: string;
+    live?: string;
+    url?: string;
+    technologies?: Array<string>;
+  }>;
+}
+
+const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
   const refInit = useRef<HTMLElement>();
   const refMyHistory = useRef<HTMLElement>();
   const refProjects = useRef<HTMLElement>();
@@ -244,9 +256,6 @@ const Home: NextPage = () => {
             alignItems="center"
             justifyContent="center"
             container
-            sx={{
-              transition: 'all 2s ease-in-out',
-            }}
           >
             <Grid xs item>
               <Title>Projetos</Title>
@@ -254,19 +263,21 @@ const Home: NextPage = () => {
             <Grid
               spacing={{ md: 4, xs: 0 }}
               sx={styles.projectsResponsive}
-              justifyContent="center"
+              justifyContent={{ xs: 'flex-start', md: 'center' }}
               item
               container
             >
               {!isMd &&
-                projects.slice(0, range).map((project, key) => (
+                projects.length &&
+                projects.slice(0, range)?.map((project, key) => (
                   <Grid key={key} xs={4} item>
                     <Project {...project} />
                   </Grid>
                 ))}
 
               {isMd &&
-                projects.map((project, key) => (
+                projects.length &&
+                projects?.map((project, key) => (
                   <Grid key={key} xs={4} sx={styles.itemProjectResponsive} item>
                     <Project {...project} />
                   </Grid>
@@ -292,7 +303,7 @@ const Home: NextPage = () => {
       <Grid
         component="section"
         alignItems="center"
-        sx={styles.container2}
+        sx={[styles.container2, styles.minHeightContainer]}
         ref={(r: HTMLElement) => (refSkills.current = r)}
         container
       >
@@ -412,3 +423,88 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const client = new ApolloClient({
+    headers: {
+      Authorization: `bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+    },
+    uri: 'https://api.github.com/graphql',
+    cache: new InMemoryCache(),
+  });
+
+  try {
+    const { data } = await client.query({
+      query: gql`
+        query {
+          search(
+            type: REPOSITORY
+            first: 10
+            query: "topic:mysite org:janilso"
+          ) {
+            repositories: edges {
+              repository: node {
+                ... on Repository {
+                  name
+                  image: openGraphImageUrl
+                  description
+                  live: homepageUrl
+                  url
+                  technologies: repositoryTopics(first: 3) {
+                    nodes {
+                      topic {
+                        name
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+    });
+
+    interface typebackend {
+      repository: {
+        technologies: {
+          nodes: Array<{
+            topic: {
+              name: string;
+            };
+          }>;
+        };
+      };
+    }
+
+    const projects = data.search.repositories
+      .map((repositories: typebackend) => {
+        const { repository } = repositories;
+        const { technologies: tech } = repository;
+        const technologies = tech.nodes.reduce((acc: Array<string>, node) => {
+          const { topic } = node;
+          const { name } = topic;
+          return name === 'mysite' ? acc : [...acc, name];
+        }, []);
+        return { ...repository, technologies };
+      })
+      .sort((a: { live: string }, b: { live: string }) => {
+        const textA = Boolean(a.live);
+        const textB = Boolean(b.live);
+        return textA === textB ? 0 : textA ? -1 : 1;
+      });
+
+    return {
+      props: {
+        projects,
+        backend: data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        projects: [],
+      },
+    };
+  }
+}

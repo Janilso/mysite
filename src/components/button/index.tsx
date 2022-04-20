@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import React, { ReactNode } from 'react';
+import { isNullOrUndefined } from 'util';
 import { styles } from './styles';
 
 interface ButtonTypes {
@@ -7,6 +8,9 @@ interface ButtonTypes {
   variant?: 'text' | 'contained' | 'outlined' | undefined;
   fullWidth?: boolean;
   onClick?: React.MouseEventHandler;
+  LinkComponent?: React.ElementType<any> | undefined;
+  href?: string;
+  target?: React.HTMLAttributeAnchorTarget | undefined;
 }
 
 const CustomButton: React.FC<ButtonTypes> = ({
@@ -14,6 +18,9 @@ const CustomButton: React.FC<ButtonTypes> = ({
   variant = 'contained',
   fullWidth = false,
   onClick,
+  LinkComponent,
+  href = '',
+  target,
 }) => {
   return (
     <Button
@@ -23,6 +30,9 @@ const CustomButton: React.FC<ButtonTypes> = ({
       fullWidth={fullWidth}
       sx={styles.button}
       onClick={onClick}
+      LinkComponent={LinkComponent}
+      href={href}
+      target={target}
     >
       {children}
     </Button>
