@@ -72,23 +72,10 @@ const Title: React.FC<TitleProps> = ({ type = 'default', children }) => {
     <Typography
       variant={isDefault ? 'h3' : 'h1'}
       textAlign={{ xs: 'center', lg: 'left' }}
-      sx={
-        isDefault
-          ? styles.text
-          : [/* animationText(children?.toString()?.length), */ styles.textMain]
-      }
+      sx={isDefault ? styles.text : [styles.textMain]}
     >
       <span>
-        {
-          /* isDefault
-          ? */ children
-          // : children
-          //     ?.toString()
-          //     ?.split('')
-          //     ?.map((word, index) => {
-          //       return <i key={index}>{word}</i>;
-          //     })
-        }
+        {children}
         <Box sx={isDefault ? styles.marker : styles.markerMain} />
       </span>
     </Typography>

@@ -5,13 +5,21 @@ const defaultMarker = {
   position: 'absolute',
   right: '0',
   bottom: '-2px',
-  borderRadius: '0 5px 5px 0',
 };
 
 const defaultText = {
   width: 'fit-content',
   [`span`]: {
     position: 'relative',
+  },
+  'span .MuiBox-root': {
+    transition: 'all 0.75s cubic-bezier(0.61, 0.04, 0.42, 1.1) 0ms',
+    transform: 'rotateY(-160deg)',
+  },
+  ':hover': {
+    'span .MuiBox-root': {
+      transform: 'rotateY(0deg)',
+    },
   },
 };
 
