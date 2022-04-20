@@ -4,7 +4,8 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Button,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import React from 'react';
 import { goToUrl } from '../../utils/functions';
@@ -26,11 +27,14 @@ const Project: React.FC<ProjectProps> = ({
   repository,
   view,
 }) => {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Card sx={styles.card} elevation={0}>
       <CardMedia
         component="img"
-        height="200"
+        height={isMd ? 140 : 200}
         image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
         alt="Project Image"
       />

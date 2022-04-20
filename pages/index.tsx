@@ -19,64 +19,8 @@ import Menu from '../src/components/menu/menu';
 import Project from '../src/components/project';
 import Title from '../src/components/title';
 import { globalStyles } from '../src/theme/globalStyles';
+import { networks, projects } from '../src/utils/constants';
 import { getMyAge, loadMore } from '../src/utils/functions';
-
-// https://api.github.com/users/janilso/repos
-
-const projects = [
-  {
-    title: 'Projeto',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-        indústria tipográfica e de impressos, e vem sendo utilizado
-        desde o século XVI, quando um impressor desconhecido pegou
-        uma bandeja de tipos e os embaralhou para.`,
-    technologies: ['Typescript', 'NextJS'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-  {
-    title: 'Projeto 2',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-        indústria tipográfica e de impressos, e vem sendo utilizado
-        desde o século XVI, quando um.`,
-    technologies: ['Dart', 'Flutter'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-  {
-    title: 'Projetoinho',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-        indústria tipográfica e de impressos, e vem sendo utilizado
-        desde o século XVI, quando um.`,
-    technologies: ['Dart', 'Flutter'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-  {
-    title: 'Projetoinho',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-        indústria tipográfica e de impressos, e vem sendo utilizado
-        desde o século XVI, quando um.`,
-    technologies: ['Dart', 'Flutter'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-];
-
-const networks = [
-  {
-    image: icon.linkedin,
-    link: 'https://www.linkedin.com/in/janilso-rodrigues/',
-  },
-  {
-    image: icon.github,
-    link: 'https://github.com/Janilso',
-  },
-  {
-    image: icon.gmail,
-    link: 'mailto:janilsorodrigues10@gmail.com',
-  },
-];
 
 const styles = {
   containerName: (theme: Theme) => ({

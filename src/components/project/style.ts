@@ -40,8 +40,15 @@ export const styles = {
     display: 'flex',
     flexDirection: ' column',
     height: '100%',
+    transition: 'all 0.3s ease-out',
+    [':hover']: {
+      transform: 'translateY(-5px) scale(1.1) translateZ(0)',
+    },
     [theme.breakpoints.down('md')]: {
       minWidth: 255,
+      [':hover']: {
+        transform: 'none',
+      },
     },
   }),
   actions: (theme: Theme) => ({
