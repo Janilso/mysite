@@ -48,6 +48,26 @@ const rotateHoverAnimate = {
   },
 };
 
+const moving2Animate = {
+  animation: 'moving2 5s cubic-bezier(0.61, -0.49, 0.37, 1.27) infinite',
+  position: 'relative',
+  '@keyframes moving2': {
+    '0%': {
+      transform: 'rotate(-10deg) scale(0.8)',
+    },
+    '50%': {
+      transform: 'rotate(10deg) scale(1.1)',
+    },
+    '100%': {
+      transform: 'rotate(-10deg) scale(0.8)',
+    },
+  },
+};
+
+const moving2AnimateResponsive = (theme: Theme) => ({
+  [theme.breakpoints.down('md')]: {},
+});
+
 const rotateHoverAnimateResponsive = (theme: Theme) => ({
   [theme.breakpoints.down('md')]: {
     // left: '-10px',
@@ -61,6 +81,8 @@ const animations = {
   movingAnimateResponsive,
   rotateHoverAnimate,
   rotateHoverAnimateResponsive,
+  moving2Animate,
+  moving2AnimateResponsive,
 };
 
 export default animations;

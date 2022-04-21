@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import animations from './animations';
 
 interface AnimatedContentProps {
-  type?: 'rotate' | 'moving' | 'rotateHover';
+  type?: 'rotate' | 'moving' | 'rotateHover' | 'moving2';
   children: ReactElement;
   boxed?: boolean;
 }

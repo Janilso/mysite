@@ -59,6 +59,10 @@ const styles = {
     display: 'flex',
     gap: theme.spacing(3),
   }),
+  textNotfound: (theme: Theme) => ({
+    ...globalStyles.h3Semibold,
+    color: theme.palette.secondary.main,
+  }),
 
   imageContantResponsive: (theme: Theme) => ({
     [theme.breakpoints.down('md')]: { mt: theme.spacing(5) },
@@ -266,24 +270,29 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
               item
               container
             >
-              {!isMd &&
-                projects.length &&
-                projects.slice(0, range)?.map((project, key) => (
-                  <Grid key={key} xs={4} item>
-                    <Project {...project} />
-                  </Grid>
-                ))}
+              {!isMd
+                ? projects.slice(0, range)?.map((project, key) => (
+                    <Grid key={key} xs={4} item>
+                      <Project {...project} />
+                    </Grid>
+                  ))
+                : null}
 
-              {isMd &&
-                projects.length &&
-                projects?.map((project, key) => (
-                  <Grid key={key} xs={4} sx={styles.itemProjectResponsive} item>
-                    <Project {...project} />
-                  </Grid>
-                ))}
+              {isMd
+                ? projects?.map((project, key) => (
+                    <Grid
+                      key={key}
+                      xs={4}
+                      sx={styles.itemProjectResponsive}
+                      item
+                    >
+                      <Project {...project} />
+                    </Grid>
+                  ))
+                : null}
             </Grid>
 
-            {!isMd && (
+            {!isMd && projects?.length >= 3 ? (
               <Grid item sx={styles.more}>
                 <CustomButton
                   onClick={() =>
@@ -294,7 +303,30 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
                   {range < projects?.length ? 'Ver Mais' : 'Ver Menos'}
                 </CustomButton>
               </Grid>
-            )}
+            ) : null}
+
+            {!projects?.length ? (
+              <Grid
+                direction="column"
+                alignItems="center"
+                gap={6}
+                sx={{ mt: 6 }}
+                item
+                container
+              >
+                <AnimatedContent type="moving2">
+                  <Image
+                    alt="Janilso Not Found"
+                    width={isMd ? 220 : 298}
+                    height={isMd ? 167 : 226}
+                    src={images.notFound}
+                  />
+                </AnimatedContent>
+                <Typography sx={styles.textNotfound}>
+                  Erro ao carregar
+                </Typography>
+              </Grid>
+            ) : null}
           </Grid>
         </Container>
       </Grid>
