@@ -494,16 +494,12 @@ export async function getStaticProps() {
         return textA === textB ? 0 : textA ? -1 : 1;
       });
 
-    console.log('projects', projects);
-
     return {
       props: {
         projects,
       },
     };
   } catch (error) {
-    console.log('errorrr', error);
-
     return {
       props: {
         projects: [],
