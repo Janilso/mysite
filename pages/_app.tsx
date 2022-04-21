@@ -20,6 +20,10 @@ export default function MyApp(props: {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta
+          name="description"
+          content="Site portifólio de Janilso Rodrigues, programador frontend web/mobile."
+        />
         <title>Janilso Rodrigues</title>
       </Head>
       <ThemeProvider theme={theme}>
