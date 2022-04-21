@@ -13,23 +13,25 @@ import nextjs from './nextjs.svg';
 import reactjs from './reactjs.svg';
 import sass from './sass.svg';
 import typescript from './typescript.svg';
+import menu from './menu.svg';
 
 const icon = {
-    css,
-    dart,
-    facebook,
-    flutter,
-    git,
-    github,
-    gmail,
-    html,
-    instagram,
-    javascript,
-    linkedin,
-    nextjs,
-    reactjs,
-    sass,
-    typescript,
+  css,
+  dart,
+  facebook,
+  flutter,
+  git,
+  github,
+  gmail,
+  html,
+  instagram,
+  javascript,
+  linkedin,
+  nextjs,
+  reactjs,
+  sass,
+  typescript,
+  menu,
 };
 
 export default icon;

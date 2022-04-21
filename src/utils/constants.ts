@@ -1,45 +1,5 @@
 import icon from '../assets/icons';
 
-const projects = [
-  {
-    title: 'Projeto',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-          indústria tipográfica e de impressos, e vem sendo utilizado
-          desde o século XVI, quando um impressor desconhecido pegou
-          uma bandeja de tipos e os embaralhou para.`,
-    technologies: ['Typescript', 'NextJS'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-  {
-    title: 'Projeto 2',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-          indústria tipográfica e de impressos, e vem sendo utilizado
-          desde o século XVI, quando um.`,
-    technologies: ['Dart', 'Flutter'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-  {
-    title: 'Projetoinho',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-          indústria tipográfica e de impressos, e vem sendo utilizado
-          desde o século XVI, quando um.`,
-    technologies: ['Dart', 'Flutter'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-  {
-    title: 'Projetoinho',
-    description: `Lorem Ipsum é simplesmente uma simulação de texto da
-          indústria tipográfica e de impressos, e vem sendo utilizado
-          desde o século XVI, quando um.`,
-    technologies: ['Dart', 'Flutter'],
-    repository: 'https://www.google.com/',
-    view: 'https://www.google.com/',
-  },
-];
-
 const networks = [
   {
     image: icon.linkedin,
@@ -68,4 +28,12 @@ const skillsText = {
   typescript: 'Typescript',
 };
 
-export { networks, projects, skillsText };
+const projectsText = {
+  calculo_saque_fgts: 'Cálculo Saque Aniversário FGTS',
+  plans_gastos: 'Plans Gastos',
+  'nlw_3-web': 'Happy - Frontend',
+  'nlw_3-backend': 'Happy - Backend',
+  janquiz: 'JanQuiz',
+};
+
+export { networks, skillsText, projectsText };

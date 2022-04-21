@@ -1,3 +1,4 @@
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import {
   Button,
   Container,
@@ -10,22 +11,21 @@ import {
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import icon from '../src/assets/icons';
 import images from '../src/assets/images';
 import AnimatedContent from '../src/components/animatedContent';
 import CustomButton from '../src/components/button';
+import CustomAppBar from '../src/components/customAppBar';
 import IconSkill from '../src/components/iconSkill';
-import Menu from '../src/components/menu/menu';
 import Project from '../src/components/project';
 import Title from '../src/components/title';
 import { globalStyles } from '../src/theme/globalStyles';
-import { networks, projects } from '../src/utils/constants';
+import { networks } from '../src/utils/constants';
 import { getMyAge, loadMore } from '../src/utils/functions';
 
 const styles = {
   containerName: (theme: Theme) => ({
     mt: theme.spacing(8),
-    minHeight: 790,
+    minHeight: 'calc(100vh - 64px)',
     [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
   }),
   container: (theme: Theme) => ({
@@ -36,7 +36,7 @@ const styles = {
     background: theme.palette.primary.dark,
   }),
   minHeightContainer: (theme: Theme) => ({
-    minHeight: 855,
+    minHeight: 'calc(100vh - 64px)',
     [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
   }),
   more: (theme: Theme) => ({
@@ -58,6 +58,10 @@ const styles = {
   networks: (theme: Theme) => ({
     display: 'flex',
     gap: theme.spacing(3),
+  }),
+  textNotfound: (theme: Theme) => ({
+    ...globalStyles.h3Semibold,
+    color: theme.palette.secondary.main,
   }),
 
   imageContantResponsive: (theme: Theme) => ({
@@ -101,7 +105,18 @@ const styles = {
   }),
 };
 
-const Home: NextPage = () => {
+interface NextPageProps {
+  projects: Array<{
+    name: string;
+    image: string;
+    description: string;
+    live?: string;
+    url?: string;
+    technologies?: Array<string>;
+  }>;
+}
+
+const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
   const refInit = useRef<HTMLElement>();
   const refMyHistory = useRef<HTMLElement>();
   const refProjects = useRef<HTMLElement>();
@@ -118,7 +133,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Menu
+      <CustomAppBar
         panes={[
           { title: 'Início', ref: refInit },
           { title: 'Minha História', ref: refMyHistory },
@@ -216,15 +231,15 @@ const Home: NextPage = () => {
               <Title>Minha História</Title>
               <Typography align="justify" sx={styles.textAbout}>
                 Sou o Janilso Rodrigues, tenho {getMyAge()} anos. Sou
-                desenvolvedor <mark>web frontend pleno</mark>, que gosta de se
-                aventurar no mobile, e um pouco no bakend. Sou um Maranhense que
-                iniciou o Curso de <mark>Sistemas de Informação</mark>,
+                desenvolvedor <mark>web front-end pleno</mark>, que gosta de se
+                aventurar no mobile, e um pouco no back-end. Sou um Maranhense
+                que iniciou o Curso de <mark>Sistemas de Informação</mark>,
                 conseguiu uma oportunidade de emprego em São Paulo e decidiu
                 arriscar. Me mudei, transferi o curso para SP e estou nos
                 últimos semestres! Gosto muito de estar atento às{' '}
                 <mark>tendências do mercado</mark>, haja vista que na área de
-                tecnologia, temos sempre que nos mantermos{' '}
-                <mark>atualizados</mark>.
+                tecnologia, temos sempre que nos manter <mark>atualizados</mark>
+                .
               </Typography>
             </Grid>
           </Grid>
@@ -251,25 +266,33 @@ const Home: NextPage = () => {
             <Grid
               spacing={{ md: 4, xs: 0 }}
               sx={styles.projectsResponsive}
+              justifyContent={{ xs: 'flex-start', md: 'center' }}
               item
               container
             >
-              {!isMd &&
-                projects.slice(0, range).map((project, key) => (
-                  <Grid key={key} xs={4} item>
-                    <Project {...project} />
-                  </Grid>
-                ))}
+              {!isMd
+                ? projects.slice(0, range)?.map((project, key) => (
+                    <Grid key={key} xs={4} item>
+                      <Project {...project} />
+                    </Grid>
+                  ))
+                : null}
 
-              {isMd &&
-                projects.map((project, key) => (
-                  <Grid key={key} xs={4} sx={styles.itemProjectResponsive} item>
-                    <Project {...project} />
-                  </Grid>
-                ))}
+              {isMd
+                ? projects?.map((project, key) => (
+                    <Grid
+                      key={key}
+                      xs={4}
+                      sx={styles.itemProjectResponsive}
+                      item
+                    >
+                      <Project {...project} />
+                    </Grid>
+                  ))
+                : null}
             </Grid>
 
-            {!isMd && (
+            {!isMd && projects?.length >= 3 ? (
               <Grid item sx={styles.more}>
                 <CustomButton
                   onClick={() =>
@@ -280,7 +303,30 @@ const Home: NextPage = () => {
                   {range < projects?.length ? 'Ver Mais' : 'Ver Menos'}
                 </CustomButton>
               </Grid>
-            )}
+            ) : null}
+
+            {!projects?.length ? (
+              <Grid
+                direction="column"
+                alignItems="center"
+                gap={6}
+                sx={{ mt: 6 }}
+                item
+                container
+              >
+                <AnimatedContent type="moving2">
+                  <Image
+                    alt="Janilso Not Found"
+                    width={isMd ? 220 : 298}
+                    height={isMd ? 167 : 226}
+                    src={images.notFound}
+                  />
+                </AnimatedContent>
+                <Typography sx={styles.textNotfound}>
+                  Erro ao carregar
+                </Typography>
+              </Grid>
+            ) : null}
           </Grid>
         </Container>
       </Grid>
@@ -288,7 +334,7 @@ const Home: NextPage = () => {
       <Grid
         component="section"
         alignItems="center"
-        sx={styles.container2}
+        sx={[styles.container2, styles.minHeightContainer]}
         ref={(r: HTMLElement) => (refSkills.current = r)}
         container
       >
@@ -304,11 +350,16 @@ const Home: NextPage = () => {
             >
               <Title>Skills</Title>
               <Typography
-                textAlign={{ xs: 'center', lg: 'left' }}
+                textAlign={{ xs: 'center', md: 'left' }}
                 sx={styles.textAbout}
               >
                 {isMd ? 'Abaixo' : 'Ao lado'} estou exibindo algumas habilidades
                 que tenho.
+                <mark>
+                  {isMd
+                    ? ' (Clique nos ícones para ver mais)'
+                    : ' (Passe o mouse sobre os ícones para ver mais)'}
+                </mark>
               </Typography>
             </Grid>
 
@@ -403,3 +454,87 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const client = new ApolloClient({
+    headers: {
+      Authorization: `bearer ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`,
+    },
+    uri: 'https://api.github.com/graphql',
+    cache: new InMemoryCache(),
+  });
+
+  try {
+    const { data } = await client.query({
+      query: gql`
+        query {
+          search(
+            type: REPOSITORY
+            first: 10
+            query: "topic:mysite org:janilso"
+          ) {
+            repositories: edges {
+              repository: node {
+                ... on Repository {
+                  name
+                  image: openGraphImageUrl
+                  description
+                  live: homepageUrl
+                  url
+                  technologies: repositoryTopics(first: 3) {
+                    nodes {
+                      topic {
+                        name
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+    });
+
+    interface typebackend {
+      repository: {
+        technologies: {
+          nodes: Array<{
+            topic: {
+              name: string;
+            };
+          }>;
+        };
+      };
+    }
+
+    const projects = data.search.repositories
+      .map((repositories: typebackend) => {
+        const { repository } = repositories;
+        const { technologies: tech } = repository;
+        const technologies = tech.nodes.reduce((acc: Array<string>, node) => {
+          const { topic } = node;
+          const { name } = topic;
+          return name === 'mysite' ? acc : [...acc, name];
+        }, []);
+        return { ...repository, technologies };
+      })
+      .sort((a: { live: string }, b: { live: string }) => {
+        const textA = Boolean(a.live);
+        const textB = Boolean(b.live);
+        return textA === textB ? 0 : textA ? -1 : 1;
+      });
+
+    return {
+      props: {
+        projects,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        projects: [],
+      },
+    };
+  }
+}

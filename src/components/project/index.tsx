@@ -8,24 +8,27 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import React from 'react';
-import { goToUrl } from '../../utils/functions';
+import { getProjectName } from '../../utils/functions';
+import { stringCapitalized } from '../../utils/normalizers';
 import CustomButton from '../button';
 import { styles } from './style';
 
 interface ProjectProps {
-  title: string;
+  name: string;
+  image: string;
   description: string;
-  technologies: Array<string>;
-  repository: string;
-  view: string;
+  live?: string;
+  url?: string;
+  technologies?: Array<string>;
 }
 
 const Project: React.FC<ProjectProps> = ({
-  title,
+  name,
+  image,
   description,
-  technologies,
-  repository,
-  view,
+  live,
+  url,
+  technologies = [],
 }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.down('md'));
@@ -35,36 +38,38 @@ const Project: React.FC<ProjectProps> = ({
       <CardMedia
         component="img"
         height={isMd ? 140 : 200}
-        image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+        image={image}
         alt="Project Image"
       />
       <CardContent sx={styles.content}>
         <Typography sx={styles.title} variant="h3">
-          {title}
+          {getProjectName(name)}
         </Typography>
         <Typography sx={styles.description}>{description}</Typography>
-        {technologies.length && (
+        {technologies.length ? (
           <Typography align="right" sx={styles.technologies}>
             {technologies.map((tech, index) => {
               return (
                 <React.Fragment key={index}>
                   {index !== 0 ? <mark> | </mark> : null}
-                  {tech}
+                  {stringCapitalized(tech)}
                 </React.Fragment>
               );
             })}
           </Typography>
-        )}
+        ) : null}
       </CardContent>
       <CardActions disableSpacing sx={styles.actions}>
-        {view && (
-          <CustomButton onClick={() => goToUrl(view)} fullWidth>
+        {live && (
+          <CustomButton LinkComponent="a" href={live} target="_blank" fullWidth>
             Ver
           </CustomButton>
         )}
-        {repository && (
+        {url && (
           <CustomButton
-            onClick={() => goToUrl(repository)}
+            LinkComponent="a"
+            href={url}
+            target="_blank"
             variant="outlined"
             fullWidth
           >
