@@ -11,7 +11,6 @@ import {
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
-import icon from '../src/assets/icons';
 import images from '../src/assets/images';
 import AnimatedContent from '../src/components/animatedContent';
 import CustomButton from '../src/components/button';

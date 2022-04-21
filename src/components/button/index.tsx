@@ -1,6 +1,6 @@
-import { Button } from '@mui/material';
+import { Button, SxProps } from '@mui/material';
+import { Theme } from '@mui/material/styles';
 import React, { ReactNode } from 'react';
-import { isNullOrUndefined } from 'util';
 import { styles } from './styles';
 
 interface ButtonTypes {
@@ -28,7 +28,7 @@ const CustomButton: React.FC<ButtonTypes> = ({
       variant={variant}
       size="large"
       fullWidth={fullWidth}
-      sx={styles.button}
+      sx={[styles.button]}
       onClick={onClick}
       LinkComponent={LinkComponent}
       href={href}
