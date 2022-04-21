@@ -28,7 +28,11 @@ const skillsText = {
   typescript: 'Typescript',
 };
 
-const projectsText = {
+type tplotOptions = {
+  [key: string]: string;
+};
+
+const projectsText: tplotOptions = {
   calculo_saque_fgts: 'Cálculo Saque Aniversário FGTS',
   plans_gastos: 'Plans Gastos',
   'nlw_3-web': 'Happy - Frontend',
