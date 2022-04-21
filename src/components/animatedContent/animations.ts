@@ -69,9 +69,7 @@ const moving2AnimateResponsive = (theme: Theme) => ({
 });
 
 const rotateHoverAnimateResponsive = (theme: Theme) => ({
-  [theme.breakpoints.down('md')]: {
-    // left: '-10px',
-  },
+  [theme.breakpoints.down('md')]: {},
 });
 
 const animations = {
