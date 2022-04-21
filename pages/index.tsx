@@ -6,11 +6,13 @@ import {
   Theme,
   Typography,
   useMediaQuery,
+  useScrollTrigger,
   useTheme,
 } from '@mui/material';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
+import icon from '../src/assets/icons';
 import images from '../src/assets/images';
 import AnimatedContent from '../src/components/animatedContent';
 import CustomButton from '../src/components/button';
@@ -58,10 +60,35 @@ const styles = {
   networks: (theme: Theme) => ({
     display: 'flex',
     gap: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      mb: theme.spacing(5),
+    },
   }),
   textNotfound: (theme: Theme) => ({
     ...globalStyles.h3Semibold,
     color: theme.palette.secondary.main,
+  }),
+  buttonToTop: (theme: Theme) => ({
+    position: 'fixed',
+    right: theme.spacing(5),
+    bgcolor: theme.palette.secondary.main,
+    borderRadius: 50,
+    width: 64,
+    height: 64,
+    p: 0,
+    transition: 'all 0.5s cubic-bezier(0.61, -0.49, 0.37, 1.27)',
+    [':hover']: {
+      transform: 'scale(1.1)',
+    },
+    [theme.breakpoints.down('md')]: {
+      right: theme.spacing(2),
+      minWidth: 50,
+      width: 50,
+      height: 50,
+      [':hover']: {
+        transform: 'none',
+      },
+    },
   }),
 
   imageContantResponsive: (theme: Theme) => ({
@@ -114,14 +141,21 @@ interface NextPageProps {
     url?: string;
     technologies?: Array<string>;
   }>;
+  windowProps?: () => Window;
 }
 
-const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
+const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
   const refInit = useRef<HTMLElement>();
-  const refMyHistory = useRef<HTMLElement>();
+  const refAbout = useRef<HTMLElement>();
   const refProjects = useRef<HTMLElement>();
   const refSkills = useRef<HTMLElement>();
   const refNetworks = useRef<HTMLElement>();
+
+  const showToTop = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 200,
+    target: windowProps ? windowProps() : undefined,
+  });
 
   const [range, setRange] = useState(3);
   const theme = useTheme();
@@ -131,12 +165,40 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
 
   const newRange = loadMore(projects, range, 4);
 
+  const renderShowToTop = () => {
+    return (
+      <Button
+        color="secondary"
+        variant="contained"
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+          });
+        }}
+        sx={[
+          styles.buttonToTop,
+          (theme: Theme) => ({
+            bottom: showToTop ? theme.spacing(5) : '-100px',
+            [theme.breakpoints.down('md')]: {
+              bottom: showToTop ? theme.spacing(3) : '-100px',
+            },
+          }),
+        ]}
+      >
+        <Grid container justifyContent="center" alignItems="center">
+          <Image alt="Top" width={40} height={40} src={icon.chevronUp} />
+        </Grid>
+      </Button>
+    );
+  };
+
   return (
     <>
       <CustomAppBar
         panes={[
           { title: 'Início', ref: refInit },
-          { title: 'Minha História', ref: refMyHistory },
+          { title: 'Sobre', ref: refAbout },
           { title: 'Projetos', ref: refProjects },
           { title: 'Skills', ref: refSkills },
           { title: 'Redes', ref: refNetworks },
@@ -199,7 +261,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
         component="section"
         alignItems="center"
         sx={[styles.container2, styles.minHeightContainer]}
-        ref={(r: HTMLElement) => (refMyHistory.current = r)}
+        ref={(r: HTMLElement) => (refAbout.current = r)}
         container
       >
         <Container>
@@ -212,7 +274,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
             <Grid xs item>
               <AnimatedContent type="moving">
                 <Image
-                  alt="Janilso History"
+                  alt="Janilso Sobre"
                   width={isMd ? 232 : 451}
                   height={isMd ? 164 : 317}
                   src={images.history}
@@ -228,18 +290,17 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
               item
               container
             >
-              <Title>Minha História</Title>
+              <Title>Sobre</Title>
               <Typography align="justify" sx={styles.textAbout}>
-                Sou o Janilso Rodrigues, tenho {getMyAge()} anos. Sou
-                desenvolvedor <mark>web front-end pleno</mark>, que gosta de se
-                aventurar no mobile, e um pouco no back-end. Sou um Maranhense
-                que iniciou o Curso de <mark>Sistemas de Informação</mark>,
-                conseguiu uma oportunidade de emprego em São Paulo e decidiu
-                arriscar. Me mudei, transferi o curso para SP e estou nos
-                últimos semestres! Gosto muito de estar atento às{' '}
-                <mark>tendências do mercado</mark>, haja vista que na área de
-                tecnologia, temos sempre que nos manter <mark>atualizados</mark>
-                .
+                Sou o Janilso Rodrigues, tenho {getMyAge()} anos e sou
+                desenvolvedor <mark>front-end</mark>. Tenho muita afinidade pela
+                programação voltada para web, mas gosto de me aventurar no
+                <mark> mobile</mark>, e um pouco no back-end. Estou nos últimos
+                semestres do curso de <mark>Sistemas de Informação</mark>,
+                procuro sempre me atualizar sobre às tendências e novidades do
+                mercado de tecnologia. Tenho muita afeição com o
+                <mark> Javascript</mark>, mas tenho conhecimento em
+                <mark> Dart</mark>, Java e<mark> Typescript</mark>.
               </Typography>
             </Grid>
           </Grid>
@@ -449,6 +510,8 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
           </Grid>
         </Container>
       </Grid>
+
+      {renderShowToTop()}
     </>
   );
 };

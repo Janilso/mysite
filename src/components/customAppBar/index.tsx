@@ -52,7 +52,7 @@ const CustomAppBar: React.FC<MenuProps> = ({ panes, ...restProps }) => {
     const { current } = ref || {};
     if (current && current.scrollTo)
       window.scrollTo({
-        top: current.offsetTop - 64,
+        top: current.offsetTop - (isSM ? 56 : 64),
         left: 0,
       });
   };
