@@ -14,6 +14,7 @@ import reactjs from './reactjs.svg';
 import sass from './sass.svg';
 import typescript from './typescript.svg';
 import menu from './menu.svg';
+import chevronUp from './chevronUp.svg';
 
 const icon = {
   css,
@@ -32,6 +33,7 @@ const icon = {
   sass,
   typescript,
   menu,
+  chevronUp,
 };
 
 export default icon;
