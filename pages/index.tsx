@@ -15,8 +15,8 @@ import icon from '../src/assets/icons';
 import images from '../src/assets/images';
 import AnimatedContent from '../src/components/animatedContent';
 import CustomButton from '../src/components/button';
+import CustomAppBar from '../src/components/customAppBar';
 import IconSkill from '../src/components/iconSkill';
-import Menu from '../src/components/menu/menu';
 import Project from '../src/components/project';
 import Title from '../src/components/title';
 import { globalStyles } from '../src/theme/globalStyles';
@@ -130,7 +130,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
 
   return (
     <>
-      <Menu
+      <CustomAppBar
         panes={[
           { title: 'Início', ref: refInit },
           { title: 'Minha História', ref: refMyHistory },
@@ -494,13 +494,16 @@ export async function getStaticProps() {
         return textA === textB ? 0 : textA ? -1 : 1;
       });
 
+    console.log('projects', projects);
+
     return {
       props: {
         projects,
-        backend: data,
       },
     };
   } catch (error) {
+    console.log('errorrr', error);
+
     return {
       props: {
         projects: [],
