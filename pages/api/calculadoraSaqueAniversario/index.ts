@@ -17,11 +17,6 @@ async function calculadoraFgts(
 ) {
   const origin = process.env.CORS_ORIGIN?.split(',') ?? null;
 
-  console.log('CORS_ORIGIN', process.env.CORS_ORIGIN);
-  console.log('CORS_ORIGIN Split', process.env.CORS_ORIGIN?.split(','));
-  console.log('origin', origin);
-  console.log('origin', origin);
-
   await NextCors(request, response, {
     methods: ['POST'],
     origin,
