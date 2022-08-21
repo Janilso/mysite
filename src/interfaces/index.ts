@@ -14,3 +14,8 @@ export interface IResponseCalcSaque {
   saldoFuturoTotal: number;
   previsaoSaque: number;
 }
+
+export enum ETypeTitle {
+  main,
+  default,
+}

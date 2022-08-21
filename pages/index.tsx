@@ -16,121 +16,123 @@ import icon from '../src/assets/icons';
 import images from '../src/assets/images';
 import AnimatedContent from '../src/components/animatedContent';
 import CustomButton from '../src/components/button';
-import CustomAppBar from '../src/components/customAppBar';
+import Header from '../src/components/header';
 import IconSkill from '../src/components/iconSkill';
 import Project from '../src/components/project';
 import Title from '../src/components/title';
+import { ETypeTitle } from '../src/interfaces';
+import { styles } from '../src/stylesPage/home';
 import { globalStyles } from '../src/theme/globalStyles';
 import { networks } from '../src/utils/constants';
 import { getMyAge, loadMore } from '../src/utils/functions';
 
-const styles = {
-  containerName: (theme: Theme) => ({
-    mt: theme.spacing(8),
-    minHeight: 'calc(100vh - 64px)',
-    [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
-  }),
-  container: (theme: Theme) => ({
-    py: theme.spacing(5),
-  }),
-  container2: (theme: Theme) => ({
-    py: theme.spacing(5),
-    background: theme.palette.primary.dark,
-  }),
-  minHeightContainer: (theme: Theme) => ({
-    minHeight: 'calc(100vh - 64px)',
-    [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
-  }),
-  more: (theme: Theme) => ({
-    mt: theme.spacing(4),
-  }),
-  text: (theme: Theme) => ({
-    ...globalStyles.h1Regular,
-    [theme.breakpoints.down('sm')]: {
-      ...globalStyles.h1RegularMobile,
-    },
-  }),
-  textAbout: (theme: Theme) => ({
-    ...globalStyles.h3Regular,
-    [`mark`]: {
-      color: theme.palette.secondary.main,
-      background: 'transparent',
-    },
-  }),
-  networks: (theme: Theme) => ({
-    display: 'flex',
-    gap: theme.spacing(3),
-    [theme.breakpoints.down('sm')]: {
-      mb: theme.spacing(5),
-    },
-  }),
-  textNotfound: (theme: Theme) => ({
-    ...globalStyles.h3Semibold,
-    color: theme.palette.secondary.main,
-  }),
-  buttonToTop: (theme: Theme) => ({
-    position: 'fixed',
-    right: theme.spacing(5),
-    bgcolor: theme.palette.secondary.main,
-    borderRadius: 50,
-    width: 64,
-    height: 64,
-    p: 0,
-    transition: 'all 0.5s cubic-bezier(0.61, -0.49, 0.37, 1.27)',
-    [':hover']: {
-      transform: 'scale(1.1)',
-    },
-    [theme.breakpoints.down('md')]: {
-      right: theme.spacing(2),
-      minWidth: 50,
-      width: 50,
-      height: 50,
-      [':hover']: {
-        transform: 'none',
-      },
-    },
-  }),
+// const lastStyles = {
+// containerName: (theme: Theme) => ({
+//   mt: theme.spacing(8),
+//   minHeight: 'calc(100vh - 64px)',
+//   [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
+// }),
+// container: (theme: Theme) => ({
+//   py: theme.spacing(5),
+// }),
+// container2: (theme: Theme) => ({
+//   py: theme.spacing(5),
+//   background: theme.palette.primary.dark,
+// }),
+// minHeightContainer: (theme: Theme) => ({
+//   minHeight: 'calc(100vh - 64px)',
+//   [theme.breakpoints.down('sm')]: { minHeight: 'initial' },
+// }),
+// more: (theme: Theme) => ({
+//   mt: theme.spacing(4),
+// }),
+// text: (theme: Theme) => ({
+//   ...globalStyles.h1Regular,
+//   [theme.breakpoints.down('sm')]: {
+//     ...globalStyles.h1RegularMobile,
+//   },
+// }),
+// textAbout: (theme: Theme) => ({
+//   ...globalStyles.h3Regular,
+//   [`mark`]: {
+//     color: theme.palette.secondary.main,
+//     background: 'transparent',
+//   },
+// }),
+// networks: (theme: Theme) => ({
+//   display: 'flex',
+//   gap: theme.spacing(3),
+//   [theme.breakpoints.down('sm')]: {
+//     mb: theme.spacing(5),
+//   },
+// }),
+// textNotfound: (theme: Theme) => ({
+//   ...globalStyles.h3Semibold,
+//   color: theme.palette.secondary.main,
+// }),
+// buttonToTop: (theme: Theme) => ({
+//   position: 'fixed',
+//   right: theme.spacing(5),
+//   bgcolor: theme.palette.secondary.main,
+//   borderRadius: 50,
+//   width: 64,
+//   height: 64,
+//   p: 0,
+//   transition: 'all 0.5s cubic-bezier(0.61, -0.49, 0.37, 1.27)',
+//   [':hover']: {
+//     transform: 'scale(1.1)',
+//   },
+//   [theme.breakpoints.down('md')]: {
+//     right: theme.spacing(2),
+//     minWidth: 50,
+//     width: 50,
+//     height: 50,
+//     [':hover']: {
+//       transform: 'none',
+//     },
+//   },
+// }),
 
-  imageContantResponsive: (theme: Theme) => ({
-    [theme.breakpoints.down('md')]: { mt: theme.spacing(5) },
-  }),
-  projectsResponsive: (theme: Theme) => ({
-    [theme.breakpoints.down('md')]: {
-      gap: theme.spacing(2),
-      flexWrap: 'nowrap',
-      overflowX: 'auto',
-      webkitOverflowScrolling: 'touch',
-      scrollSnapType: 'x mandatory',
-      '::-webkit-scrollbar': {
-        display: 'none',
-      },
-      '.MuiGrid-root.MuiGrid-item': {
-        scrollSnapAlign: 'start',
-        position: 'relative',
-      },
-    },
-  }),
-  itemProjectResponsive: (theme: Theme) => ({
-    [theme.breakpoints.down('md')]: {
-      width: 'fit-content',
-      maxWidth: 'initial',
-      position: 'relative',
-      '&:last-child:after': {
-        content: '""',
-        width: theme.spacing(2),
-        height: '1px',
-        position: 'absolute',
-        left: '100%',
-        top: 0,
-      },
-    },
-  }),
-  containerProjectsResposive: (theme: Theme) => ({
-    [theme.breakpoints.down('md')]: {
-      pr: 0,
-    },
-  }),
-};
+// imageContantResponsive: (theme: Theme) => ({
+//   [theme.breakpoints.down('md')]: { mt: theme.spacing(5) },
+// }),
+// projectsResponsive: (theme: Theme) => ({
+//   [theme.breakpoints.down('md')]: {
+//     gap: theme.spacing(2),
+//     flexWrap: 'nowrap',
+//     overflowX: 'auto',
+//     webkitOverflowScrolling: 'touch',
+//     scrollSnapType: 'x mandatory',
+//     '::-webkit-scrollbar': {
+//       display: 'none',
+//     },
+//     '.MuiGrid-root.MuiGrid-item': {
+//       scrollSnapAlign: 'start',
+//       position: 'relative',
+//     },
+//   },
+// }),
+// itemProjectResponsive: (theme: Theme) => ({
+//   [theme.breakpoints.down('md')]: {
+//     width: 'fit-content',
+//     maxWidth: 'initial',
+//     position: 'relative',
+//     '&:last-child:after': {
+//       content: '""',
+//       width: theme.spacing(2),
+//       height: '1px',
+//       position: 'absolute',
+//       left: '100%',
+//       top: 0,
+//     },
+//   },
+// }),
+// containerProjectsResposive: (theme: Theme) => ({
+//   [theme.breakpoints.down('md')]: {
+//     pr: 0,
+//   },
+// }),
+// };
 
 interface NextPageProps {
   projects: Array<{
@@ -165,37 +167,37 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
 
   const newRange = loadMore(projects, range, 4);
 
-  const renderShowToTop = () => {
-    return (
-      <Button
-        color="secondary"
-        variant="contained"
-        onClick={() => {
-          window.scrollTo({
-            top: 0,
-            left: 0,
-          });
-        }}
-        sx={[
-          styles.buttonToTop,
-          (theme: Theme) => ({
-            bottom: showToTop ? theme.spacing(5) : '-100px',
-            [theme.breakpoints.down('md')]: {
-              bottom: showToTop ? theme.spacing(3) : '-100px',
-            },
-          }),
-        ]}
-      >
-        <Grid container justifyContent="center" alignItems="center">
-          <Image alt="Top" width={40} height={40} src={icon.chevronUp} />
-        </Grid>
-      </Button>
-    );
-  };
+  // const renderShowToTop = () => {
+  //   return (
+  //     <Button
+  //       color="secondary"
+  //       variant="contained"
+  //       onClick={() => {
+  //         window.scrollTo({
+  //           top: 0,
+  //           left: 0,
+  //         });
+  //       }}
+  //       sx={[
+  //         styles.buttonToTop,
+  //         (theme: Theme) => ({
+  //           bottom: showToTop ? theme.spacing(5) : '-100px',
+  //           [theme.breakpoints.down('md')]: {
+  //             bottom: showToTop ? theme.spacing(3) : '-100px',
+  //           },
+  //         }),
+  //       ]}
+  //     >
+  //       <Grid container justifyContent="center" alignItems="center">
+  //         <Image alt="Top" width={40} height={40} src={icon.chevronUp} />
+  //       </Grid>
+  //     </Button>
+  //   );
+  // };
 
   return (
     <>
-      <CustomAppBar
+      <Header
         panes={[
           { title: 'Início', ref: refInit },
           { title: 'Sobre', ref: refAbout },
@@ -204,10 +206,11 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
           { title: 'Redes', ref: refNetworks },
         ]}
       />
+
       <Grid
         component="section"
         alignItems="center"
-        sx={[styles.container, styles.containerName]}
+        sx={styles.sectionName}
         ref={(r: HTMLElement) => (refInit.current = r)}
         container
       >
@@ -221,28 +224,15 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
               item
               container
             >
-              <Typography
-                textAlign={{ xs: 'center', lg: 'left' }}
-                sx={styles.text}
-              >
+              <Typography textAlign={{ xs: 'center', lg: 'left' }} variant="h1">
                 Olá! Me chamo
               </Typography>
-              <Title type="main">Janilso Rodrigues</Title>
-              <Typography
-                textAlign={{ xs: 'center', lg: 'left' }}
-                sx={styles.text}
-              >
+              <Title type={ETypeTitle.main}>Janilso Rodrigues</Title>
+              <Typography textAlign={{ xs: 'center', lg: 'left' }} variant="h1">
                 Sou um programador!
               </Typography>
             </Grid>
-            <Grid
-              md
-              xs={12}
-              container
-              item
-              justifyContent={{ md: 'flex-end', xs: 'center' }}
-              sx={styles.imageContantResponsive}
-            >
+            <Grid md xs={12} container item sx={styles.sectionNameimage}>
               <AnimatedContent>
                 <Image
                   alt="Janilso Programing"
@@ -259,8 +249,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
 
       <Grid
         component="section"
-        alignItems="center"
-        sx={[styles.container2, styles.minHeightContainer]}
+        sx={styles.sectionAbout}
         ref={(r: HTMLElement) => (refAbout.current = r)}
         container
       >
@@ -291,16 +280,16 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
               container
             >
               <Title>Sobre</Title>
-              <Typography align="justify" sx={styles.textAbout}>
+              <Typography align="justify" variant="h3" sx={styles.textAbout}>
                 Sou o Janilso Rodrigues, tenho {getMyAge()} anos e sou
                 desenvolvedor <mark>front-end</mark>. Tenho muita afinidade pela
-                programação voltada para web, mas gosto de me aventurar no
-                <mark> mobile</mark>, e um pouco no back-end. Estou nos últimos
+                programação voltada para web, mas gosto de me aventurar no{' '}
+                <mark>mobile</mark>, e um pouco no back-end. Estou nos últimos
                 semestres do curso de <mark>Sistemas de Informação</mark>,
                 procuro sempre me atualizar sobre às tendências e novidades do
                 mercado de tecnologia. Tenho muita afeição com o
-                <mark> Javascript</mark>, mas tenho conhecimento em
-                <mark> Dart</mark>, Java e<mark> Typescript</mark>.
+                <mark> Javascript</mark>, mas tenho conhecimento em{' '}
+                <mark>Dart</mark>, Java e <mark>Typescript</mark>.
               </Typography>
             </Grid>
           </Grid>
@@ -309,12 +298,11 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
 
       <Grid
         component="section"
-        alignItems="center"
-        sx={[styles.container, styles.minHeightContainer]}
+        sx={styles.sectionProject}
         ref={(r: HTMLElement) => (refProjects.current = r)}
         container
       >
-        <Container sx={[styles.containerProjectsResposive]}>
+        <Container sx={styles.sectionProjectContainer}>
           <Grid
             direction="column"
             alignItems="center"
@@ -326,35 +314,25 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
             </Grid>
             <Grid
               spacing={{ md: 4, xs: 0 }}
-              sx={styles.projectsResponsive}
-              justifyContent={{ xs: 'flex-start', md: 'center' }}
+              sx={styles.sectionProjectList}
               item
               container
             >
-              {!isMd
-                ? projects.slice(0, range)?.map((project, key) => (
+              {isMd
+                ? projects?.map((project, key) => (
+                    <Grid key={key} xs={4} sx={styles.sectionProjectItem} item>
+                      <Project {...project} />
+                    </Grid>
+                  ))
+                : projects.slice(0, range)?.map((project, key) => (
                     <Grid key={key} xs={4} item>
                       <Project {...project} />
                     </Grid>
-                  ))
-                : null}
-
-              {isMd
-                ? projects?.map((project, key) => (
-                    <Grid
-                      key={key}
-                      xs={4}
-                      sx={styles.itemProjectResponsive}
-                      item
-                    >
-                      <Project {...project} />
-                    </Grid>
-                  ))
-                : null}
+                  ))}
             </Grid>
 
             {!isMd && projects?.length >= 3 ? (
-              <Grid item sx={styles.more}>
+              <Grid item sx={styles.sectionProjectMore}>
                 <CustomButton
                   onClick={() =>
                     setRange(range < projects?.length ? newRange : 3)
@@ -383,7 +361,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
                     src={images.notFound}
                   />
                 </AnimatedContent>
-                <Typography sx={styles.textNotfound}>
+                <Typography variant="h3" fontWeight={600} color="secondary">
                   Erro ao carregar
                 </Typography>
               </Grid>
@@ -392,6 +370,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
         </Container>
       </Grid>
 
+      {/*
       <Grid
         component="section"
         alignItems="center"
@@ -509,9 +488,9 @@ const Home: NextPage<NextPageProps> = ({ projects = [], windowProps }) => {
             </Grid>
           </Grid>
         </Container>
-      </Grid>
+      </Grid> */}
 
-      {renderShowToTop()}
+      {/* {renderShowToTop()} */}
     </>
   );
 };
