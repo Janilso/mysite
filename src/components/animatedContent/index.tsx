@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
-import React, { ReactElement } from 'react';
-import animations from './animations';
+import { Box, SxProps } from '@mui/material';
+import { cloneElement, ReactElement } from 'react';
+import { styles } from './styles';
 
 interface AnimatedContentProps {
   type?: 'rotate' | 'moving' | 'rotateHover' | 'moving2';
@@ -12,17 +12,10 @@ const AnimatedContent: React.FC<AnimatedContentProps> = (props) => {
   const { type = 'rotate', children, boxed = true } = props;
 
   return boxed ? (
-    <Box
-      sx={[
-        animations?.[`${type}Animate`],
-        animations?.[`${type}AnimateResponsive`],
-      ]}
-    >
-      {children}
-    </Box>
+    <Box sx={styles?.[`${type}Animate`] as SxProps}>{children}</Box>
   ) : (
-    React.cloneElement(children, {
-      sx: [children.props.sx, animations?.[`${type}Animate`]] ?? {},
+    cloneElement(children, {
+      sx: [children.props.sx, styles?.[`${type}Animate`]] ?? {},
     })
   );
 };

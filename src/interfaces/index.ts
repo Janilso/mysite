@@ -14,3 +14,21 @@ export interface IResponseCalcSaque {
   saldoFuturoTotal: number;
   previsaoSaque: number;
 }
+
+export enum ETypeTitle {
+  main,
+  default,
+}
+
+export interface IRepositoryBackend {
+  repository: {
+    name: string;
+    technologies: {
+      nodes: Array<{
+        topic: {
+          name: string;
+        };
+      }>;
+    };
+  };
+}

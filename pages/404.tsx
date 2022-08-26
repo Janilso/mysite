@@ -1,11 +1,10 @@
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import images from '../src/assets/images';
 import AnimatedContent from '../src/components/animatedContent';
-import CustomButton from '../src/components/button';
 
 const Custom404: NextPage = () => {
   const router = useRouter();
@@ -40,9 +39,7 @@ const Custom404: NextPage = () => {
           </AnimatedContent>
         </Grid>
         <Grid justifyContent="center" container item>
-          <CustomButton onClick={goToHome} variant="outlined">
-            Ir para o Início
-          </CustomButton>
+          <Button onClick={goToHome}>Ir para o Início</Button>
         </Grid>
       </Grid>
     </>

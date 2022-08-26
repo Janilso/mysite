@@ -38,6 +38,7 @@ const projectsText: tplotOptions = {
   'nlw_3-web': 'Happy - Frontend',
   'nlw_3-backend': 'Happy - Backend',
   janquiz: 'JanQuiz',
+  calculadora_saque_aniversario: 'Calculadora Saque Aniversário',
 };
 
 export { networks, skillsText, projectsText };

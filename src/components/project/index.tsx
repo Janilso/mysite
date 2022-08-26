@@ -4,13 +4,13 @@ import {
   CardContent,
   CardActions,
   Typography,
-  useTheme,
   useMediaQuery,
+  Theme,
+  Button,
 } from '@mui/material';
-import React from 'react';
+import { Fragment } from 'react';
 import { getProjectName } from '../../utils/functions';
 import { stringCapitalized } from '../../utils/normalizers';
-import CustomButton from '../button';
 import { styles } from './style';
 
 interface ProjectProps {
@@ -30,8 +30,7 @@ const Project: React.FC<ProjectProps> = ({
   url,
   technologies = [],
 }) => {
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.down('md'));
+  const isMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
     <Card sx={styles.card} elevation={0}>
@@ -42,18 +41,20 @@ const Project: React.FC<ProjectProps> = ({
         alt="Project Image"
       />
       <CardContent sx={styles.content}>
-        <Typography sx={styles.title} variant="h3">
+        <Typography color="secondary" fontWeight={600} variant="h3">
           {getProjectName(name)}
         </Typography>
-        <Typography sx={styles.description}>{description}</Typography>
+        <Typography variant="h4" sx={styles.description}>
+          {description}
+        </Typography>
         {technologies.length ? (
           <Typography align="right" sx={styles.technologies}>
             {technologies.map((tech, index) => {
               return (
-                <React.Fragment key={index}>
+                <Fragment key={index}>
                   {index !== 0 ? <mark> | </mark> : null}
                   {stringCapitalized(tech)}
-                </React.Fragment>
+                </Fragment>
               );
             })}
           </Typography>
@@ -61,20 +62,20 @@ const Project: React.FC<ProjectProps> = ({
       </CardContent>
       <CardActions disableSpacing sx={styles.actions}>
         {live && (
-          <CustomButton LinkComponent="a" href={live} target="_blank" fullWidth>
+          <Button LinkComponent="a" href={live ?? ''} target="_blank" fullWidth>
             Ver
-          </CustomButton>
+          </Button>
         )}
         {url && (
-          <CustomButton
+          <Button
             LinkComponent="a"
-            href={url}
+            href={url ?? ''}
             target="_blank"
             variant="outlined"
             fullWidth
           >
             Repositório
-          </CustomButton>
+          </Button>
         )}
       </CardActions>
     </Card>
