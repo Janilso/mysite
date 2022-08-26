@@ -8,24 +8,6 @@ const defaultStyles = {
     py: 5,
     alignItems: 'center',
   },
-
-  // text: (theme: Theme) => ({
-  //   ...globalStyles.h1Regular,
-  //   [theme.breakpoints.down('sm')]: {
-  //     ...globalStyles.h1RegularMobile,
-  //   },
-  // }),
-  // textAbout: (theme: Theme) => ({
-  //   ...globalStyles.h3Regular,
-  //   [`mark`]: {
-  //     color: theme.palette.secondary.main,
-  //     background: 'transparent',
-  //   },
-  // }),
-  // textNotfound: (theme: Theme) => ({
-  //   ...globalStyles.h3Semibold,
-  //   color: theme.palette.secondary.main,
-  // }),
 };
 
 export const styles: TypeStyles = {
@@ -37,21 +19,23 @@ export const styles: TypeStyles = {
     mt: { xs: 5, md: 0 },
     justifyContent: { xs: 'center', md: 'flex-end' },
   },
+
   sectionAbout: {
     ...defaultStyles.minHeightContainer,
     ...defaultStyles.container,
     bgcolor: 'colors.primaryMedium',
   },
+
   sectionProject: {
     ...defaultStyles.minHeightContainer,
     ...defaultStyles.container,
   },
   sectionProjectContainer: {
-    pr: { xs: 0, md: null },
+    px: { xs: 0, md: null },
   },
   sectionProjectList: {
     justifyContent: { xs: 'flex-start', md: 'center' },
-    gap: { xs: 2, md: 0 },
+    gap: 0,
     flexWrap: { xs: 'nowrap', md: 'wrap' },
     overflowX: { xs: 'auto', md: 'initial' },
     webkitOverflowScrolling: { xs: 'touch', md: 'initial' },
@@ -62,6 +46,7 @@ export const styles: TypeStyles = {
     '.MuiGrid-root.MuiGrid-item': {
       scrollSnapAlign: { xs: 'start', md: 'initial' },
       position: 'relative',
+      pl: 2,
     },
   },
   sectionProjectItem: {
@@ -82,23 +67,21 @@ export const styles: TypeStyles = {
     mt: 4,
   },
 
-  networks: {
+  sectionSkills: {
+    ...defaultStyles.minHeightContainer,
+    ...defaultStyles.container,
+    bgcolor: 'colors.primaryMedium',
+  },
+
+  sectionNetworks: {
+    ...defaultStyles.container,
+  },
+  sectionNetworksList: {
     display: 'flex',
-    gap: 3,
+    gap: 2,
     mb: { xs: 5, sm: 0 },
   },
-  buttonToTop: {
-    position: 'fixed',
-    right: { xs: 2, md: 5 },
-    bgcolor: 'colors.secondary',
-    borderRadius: 50,
-    width: { xs: 50, md: 64 },
-    height: { xs: 50, md: 64 },
-    minWidth: { xs: 50, md: '100%' },
-    p: 0,
-    transition: 'all 0.5s cubic-bezier(0.61, -0.49, 0.37, 1.27)',
-    [':hover']: {
-      transform: { xs: 'none', md: 'scale(1.1)' },
-    },
+  sectionNetworksItem: {
+    p: 1,
   },
 };

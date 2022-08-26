@@ -4,7 +4,7 @@ export const styles: TypeStyles = {
   card: {
     bgcolor: 'colors.primaryMedium',
     maxWidth: 375,
-    minWidth: { xs: 255, md: 'initial' },
+    minWidth: { xs: 300, md: 'initial' },
     display: 'flex',
     flexDirection: ' column',
     height: '100%',
@@ -33,5 +33,6 @@ export const styles: TypeStyles = {
     p: { xs: 1, md: 2 },
     pt: 0,
     gap: { xs: 1, sm: 2 },
+    justifyContent: 'center',
   },
 };

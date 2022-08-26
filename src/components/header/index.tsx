@@ -10,7 +10,7 @@ import {
 import {
   AppBar,
   Box,
-  Button,
+  ButtonBase,
   Container,
   Menu,
   MenuItem,
@@ -19,7 +19,6 @@ import {
   Typography,
   useMediaQuery,
   useScrollTrigger,
-  useTheme,
 } from '@mui/material';
 import { styles } from './styles';
 import Image from 'next/image';
@@ -81,9 +80,9 @@ const Header: React.FC<HeaderProps> = ({ panes, ...restProps }) => {
 
   const renderPanes = () => {
     return panes?.map(({ title, ref }) => (
-      <Button key={title} color="inherit" onClick={() => executeScroll(ref)}>
+      <ButtonBase key={title} onClick={() => executeScroll(ref)}>
         <Typography variant="h4">{title}</Typography>
-      </Button>
+      </ButtonBase>
     ));
   };
 
@@ -116,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ panes, ...restProps }) => {
             <Toolbar disableGutters sx={styles.toolbar}>
               {isSM ? (
                 <>
-                  <Button
+                  <ButtonBase
                     id="demo-positioned-button"
                     aria-controls={open ? 'demo-positioned-menu' : undefined}
                     aria-haspopup="true"
@@ -124,7 +123,7 @@ const Header: React.FC<HeaderProps> = ({ panes, ...restProps }) => {
                     onClick={handleClick}
                   >
                     <Image alt="Menu" width={30} height={30} src={icon.menu} />
-                  </Button>
+                  </ButtonBase>
                   <Menu
                     id="demo-positioned-menu"
                     aria-labelledby="demo-positioned-button"

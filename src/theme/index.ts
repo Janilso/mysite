@@ -82,7 +82,7 @@ const theme = createTheme(
         variants: [
           {
             props: { size: 'medium' },
-            style: { padding: 12 },
+            style: { padding: 12, height: 50 },
           },
           {
             props: { color: 'secondary', variant: 'contained' },
@@ -92,7 +92,25 @@ const theme = createTheme(
             props: { color: 'secondary', variant: 'outlined' },
             style: { color: colors.secondary },
           },
+          {
+            props: { fullWidth: true },
+            style: { minWidth: 'initial' },
+          },
         ],
+        styleOverrides: {
+          root: {
+            minWidth: 160,
+          },
+        },
+      },
+      MuiButtonBase: {
+        styleOverrides: {
+          root: {
+            fontFamily: ['Exo', 'Helvetica', 'Arial', 'sans-serif'].join(','),
+            padding: 12,
+            borderRadius: 4,
+          },
+        },
       },
     },
   },
