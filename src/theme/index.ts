@@ -113,6 +113,13 @@ const theme = createTheme(
           },
         },
       },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            border: 'none',
+          },
+        },
+      },
     },
   },
   ptBR
