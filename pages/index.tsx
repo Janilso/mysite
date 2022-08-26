@@ -18,10 +18,10 @@ import Header from '../src/components/header';
 import IconSkill from '../src/components/iconSkill';
 import Project from '../src/components/project';
 import Title from '../src/components/title';
-import { ETypeTitle } from '../src/interfaces';
+import { ETypeTitle, IRepositoryBackend } from '../src/interfaces';
 import { styles } from '../src/stylesPage/home';
 import { networks } from '../src/utils/constants';
-import { getMyAge, loadMore } from '../src/utils/functions';
+import { getMyAge, getProjectPriority, loadMore } from '../src/utils/functions';
 
 interface NextPageProps {
   projects: Array<{
@@ -375,7 +375,7 @@ export async function getStaticProps() {
                   description
                   live: homepageUrl
                   url
-                  technologies: repositoryTopics(first: 3) {
+                  technologies: repositoryTopics(first: 5) {
                     nodes {
                       topic {
                         name
@@ -390,34 +390,26 @@ export async function getStaticProps() {
       `,
     });
 
-    interface typebackend {
-      repository: {
-        technologies: {
-          nodes: Array<{
-            topic: {
-              name: string;
-            };
-          }>;
-        };
-      };
-    }
-
-    const projects = data.search.repositories
-      .map((repositories: typebackend) => {
-        const { repository } = repositories;
-        const { technologies: tech } = repository;
-        const technologies = tech.nodes.reduce((acc: Array<string>, node) => {
-          const { topic } = node;
-          const { name } = topic;
-          return name === 'mysite' ? acc : [...acc, name];
-        }, []);
-        return { ...repository, technologies };
-      })
-      .sort((a: { live: string }, b: { live: string }) => {
-        const textA = Boolean(a.live);
-        const textB = Boolean(b.live);
-        return textA === textB ? 0 : textA ? -1 : 1;
+    const projectsSorted = data.search.repositories
+      .map((item: IRepositoryBackend) => item)
+      .sort((a: IRepositoryBackend, b: IRepositoryBackend) => {
+        const priorityA = getProjectPriority(a);
+        const priorityB = getProjectPriority(b);
+        return priorityB - priorityA;
       });
+
+    const projects = projectsSorted.map((repositories: IRepositoryBackend) => {
+      const { repository } = repositories;
+      const { technologies: tech } = repository;
+      const technologies = tech.nodes.reduce((acc: Array<string>, node) => {
+        const { topic } = node;
+        const { name } = topic;
+        return name === 'mysite' || name.startsWith('priority')
+          ? acc
+          : [...acc, name];
+      }, []);
+      return { ...repository, technologies };
+    });
 
     return {
       props: {

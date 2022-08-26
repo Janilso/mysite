@@ -1,3 +1,4 @@
+import { IRepositoryBackend } from '../interfaces';
 import { projectsText } from './constants';
 
 const loadMore = (array: Array<any>, range: number, add: number) => {
@@ -15,4 +16,15 @@ const getMyAge = () => {
 
 const getProjectName = (name: string = '') => projectsText?.[name] ?? name;
 
-export { loadMore, goToUrl, getMyAge, getProjectName };
+const getProjectPriority = (data: IRepositoryBackend) => {
+  const priority = data.repository.technologies.nodes.reduce((acc, tech) => {
+    if (tech?.topic?.name?.startsWith('priority')) {
+      const priprity = tech?.topic?.name?.split('priority')?.[1] ?? '0';
+      return parseInt(priprity);
+    }
+    return acc;
+  }, 0);
+  return priority;
+};
+
+export { loadMore, goToUrl, getMyAge, getProjectName, getProjectPriority };

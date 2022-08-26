@@ -100,6 +100,7 @@ const theme = createTheme(
         styleOverrides: {
           root: {
             minWidth: 160,
+            alignItems: 'center',
           },
         },
       },
