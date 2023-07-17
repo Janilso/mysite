@@ -93,19 +93,12 @@ const Header: React.FC<HeaderProps> = ({
       const isLast = index === listPanes.length - 1;
 
       const nextIndex = index + 1;
-      // const sizeAppBar = refAppBar?.current?.offsetHeight ?? 0;
-      const sizeAppBar = 0;
+      const sizeAppBar = refAppBar?.current?.offsetHeight ?? 0;
 
-      let elementPosition = ref?.current?.offsetTop || 0 - sizeAppBar;
+      let elementPosition = (ref?.current?.offsetTop ?? 0) - sizeAppBar;
       let nextElementPosition =
-        (listPanes?.[nextIndex]?.ref?.current?.offsetTop ||
+        (listPanes?.[nextIndex]?.ref?.current?.offsetTop ??
           document.body.clientHeight) - sizeAppBar;
-
-      console.log('scrollY', window.scrollY);
-      console.log('elementPosition', elementPosition);
-      console.log('nextElementPosition', nextElementPosition);
-      console.log('sizeAppBar', sizeAppBar);
-      console.log('');
 
       const penultimoSize =
         (listPanes?.[listPanes.length - 2]?.ref?.current?.offsetTop || 2700) +
@@ -113,10 +106,6 @@ const Header: React.FC<HeaderProps> = ({
 
       if (isLast && window.scrollY > penultimoSize) {
         setSelectedSection(title);
-        // pega o tamanho do penultimo
-        // elementPosition =
-        //   (listPanes?.[listPanes.length - 2]?.ref?.current?.offsetTop || 2700) +
-        //   50;
       } else if (
         window.scrollY >= elementPosition &&
         window.scrollY < nextElementPosition
@@ -126,10 +115,6 @@ const Header: React.FC<HeaderProps> = ({
         }
       }
     });
-    console.log('');
-    console.log('');
-    console.log('');
-    // if (window.scrollY > 700) setSelectedSection('Sobre');
   };
 
   useEffect(() => {
@@ -150,19 +135,21 @@ const Header: React.FC<HeaderProps> = ({
   }, []);
 
   const renderPanes = () => {
-    return panes?.map(({ title, ref }) => (
-      <ToggleButton
-        key={title}
-        value={title}
-        selected={selectedSection === title}
-        onClick={() => {
-          setSelectedSection(title);
-          executeScroll(ref);
-        }}
-      >
-        <Typography variant="h4">{title}</Typography>
-      </ToggleButton>
-    ));
+    return panes?.map(({ title, ref }) => {
+      return (
+        <ToggleButton
+          key={title}
+          value={title}
+          selected={selectedSection === title}
+          onClick={() => {
+            setSelectedSection(title);
+            executeScroll(ref);
+          }}
+        >
+          <Typography variant="h4">{title}</Typography>
+        </ToggleButton>
+      );
+    });
   };
 
   const renderMenuItens = () => {
