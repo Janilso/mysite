@@ -16,7 +16,6 @@ async function calculadoraFgts(
   response: NextApiResponse<IResponseCalcSaque | IErrorBodyData>
 ) {
   const origin = process.env.CORS_ORIGIN?.split(',') ?? null;
-
   await NextCors(request, response, {
     methods: ['POST'],
     origin,
