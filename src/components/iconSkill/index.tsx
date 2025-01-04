@@ -15,7 +15,8 @@ interface IconSkillProps {
     | 'nextjs'
     | 'reactjs'
     | 'sass'
-    | 'typescript';
+    | 'typescript'
+    | 'jest';
 }
 
 const IconSkill: React.FC<IconSkillProps> = ({ type = 'html' }) => {

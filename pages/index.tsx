@@ -21,7 +21,12 @@ import Title from '../src/components/title';
 import { ETypeTitle, IRepositoryBackend } from '../src/interfaces';
 import { styles } from '../src/stylesPage/home';
 import { networks } from '../src/utils/constants';
-import { getMyAge, getProjectPriority, loadMore } from '../src/utils/functions';
+import {
+  getMyAge,
+  getMyExperience,
+  getProjectPriority,
+  loadMore,
+} from '../src/utils/functions';
 
 interface NextPageProps {
   projects: Array<{
@@ -134,15 +139,19 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
             >
               <Title>Sobre</Title>
               <Typography align="justify" variant="h3" sx={styles.textAbout}>
-                Sou o Janilso Rodrigues, tenho {getMyAge()} anos e sou
-                desenvolvedor <mark>front-end</mark>. Tenho muita afinidade pela
-                programação voltada para web, mas gosto de me aventurar no{' '}
-                <mark>mobile</mark>, e um pouco no back-end. Estou nos últimos
-                semestres do curso de <mark>Sistemas de Informação</mark>,
-                procuro sempre me atualizar sobre às tendências e novidades do
-                mercado de tecnologia. Tenho muita afeição com o
-                <mark> Javascript</mark>, mas tenho conhecimento em{' '}
-                <mark>Dart</mark>, Java e <mark>Typescript</mark>.
+                Com {getMyAge()} anos de idade e mais de{' '}
+                <mark>{getMyExperience()} anos de experiência</mark> no mercado,
+                sou um programador com foco principal no desenvolvimento{' '}
+                <mark>front-end</mark>, com ampla sapiência na criação de
+                interfaces digitais modernas, intuitivas e{' '}
+                <mark>responsivas</mark>. Minha trajetória profissional é
+                marcada por <mark>contribuições</mark> em projetos desafiadores
+                e de <mark>alto impacto</mark>, sempre colaborando com equipes
+                multidisciplinares para entregar produtos de{' '}
+                <mark>alta qualidade</mark>. Tenho um compromisso constante com{' '}
+                <mark>inovação</mark> e boas práticas, garantindo que cada
+                interface ofereça uma experiência fluida e centrada no{' '}
+                <mark>usuário</mark>.
               </Typography>
             </Grid>
           </Grid>
@@ -184,7 +193,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
                   ))}
             </Grid>
 
-            {!isMd && projects?.length >= 3 ? (
+            {!isMd && projects?.length > 3 ? (
               <Grid item sx={styles.sectionProjectMore}>
                 <Button
                   onClick={() =>
@@ -278,7 +287,7 @@ const Home: NextPage<NextPageProps> = ({ projects = [] }) => {
               </Grid>
 
               <Grid item xs={3}>
-                <IconSkill type="dart" />
+                <IconSkill type="jest" />
               </Grid>
 
               <Grid item xs={3}>

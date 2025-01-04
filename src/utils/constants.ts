@@ -26,6 +26,7 @@ const skillsText = {
   reactjs: 'ReactJS',
   sass: 'Sass',
   typescript: 'Typescript',
+  jest: 'Jest',
 };
 
 type tplotOptions = {
