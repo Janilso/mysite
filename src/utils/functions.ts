@@ -8,10 +8,22 @@ const loadMore = (array: Array<any>, range: number, add: number) => {
 const goToUrl = (url: string) => window.open(url, '_blank');
 
 const getMyAge = () => {
-  const nasc = new Date(1999, 6, 10);
-  const diff_ms = Date.now() - nasc.getTime();
-  const age_dt = new Date(diff_ms);
-  return Math.abs(age_dt.getUTCFullYear() - 1970);
+  const birth = new Date(1999, 6, 10);
+  const now = new Date();
+  const age = now.getFullYear() - birth.getFullYear();
+
+  const month = now.getMonth() - birth.getMonth();
+  if (month < 0 || (month === 0 && now.getDate() < birth.getDate())) {
+    return age - 1;
+  }
+  return age;
+};
+
+const getMyExperience = () => {
+  const initDate = new Date(2017, 1, 1);
+  const now = new Date();
+
+  return now.getFullYear() - initDate.getFullYear();
 };
 
 const getProjectName = (name: string = '') => projectsText?.[name] ?? name;
@@ -27,4 +39,11 @@ const getProjectPriority = (data: IRepositoryBackend) => {
   return priority;
 };
 
-export { loadMore, goToUrl, getMyAge, getProjectName, getProjectPriority };
+export {
+  loadMore,
+  goToUrl,
+  getMyAge,
+  getProjectName,
+  getProjectPriority,
+  getMyExperience,
+};

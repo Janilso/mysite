@@ -15,6 +15,7 @@ import sass from './sass.svg';
 import typescript from './typescript.svg';
 import menu from './menu.svg';
 import chevronUp from './chevronUp.svg';
+import jest from './jest.svg';
 
 const icon = {
   css,
@@ -34,6 +35,7 @@ const icon = {
   typescript,
   menu,
   chevronUp,
+  jest,
 };
 
 export default icon;
