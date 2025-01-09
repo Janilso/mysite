@@ -56,6 +56,7 @@ export interface IBaseParameters {
   irrf: Record<string, ParametersType>;
   inss: Record<string, ParametersType>;
   salarioMinimo: number;
+  dependentesIrrf: number;
 }
 
 export type DataCalculoIrrfType = {

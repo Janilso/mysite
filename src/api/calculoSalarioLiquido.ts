@@ -31,10 +31,12 @@ export function calculoSalarioLiquido(
     parameters
   );
   const irrf = Math.min(irrfSimplificado, irrfInss);
+  const salarioLiquido = salario - inss - irrf - outrosDescontos + beneficios;
+
   return {
     inss,
     irrf,
-    outrosDescontos: 0,
-    salarioLiquido: 0,
+    outrosDescontos,
+    salarioLiquido,
   };
 }
