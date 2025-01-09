@@ -15,6 +15,21 @@ export interface IResponseCalcSaque {
   previsaoSaque: number;
 }
 
+export interface IRequestSalarioLiquido {
+  salarioBruto: number;
+  dependentes: number;
+  pensaoAlimenticia: number;
+  outrosDescontos: number;
+  beneficios: number;
+}
+
+export interface IResponseSalarioLiquido {
+  salarioLiquido: number;
+  inss: number;
+  irff: number;
+  outrosDescontos: number;
+}
+
 export enum ETypeTitle {
   main,
   default,
@@ -31,4 +46,13 @@ export interface IRepositoryBackend {
       }>;
     };
   };
+}
+
+export type ParametersType = {
+  aliquota?: number;
+  deducao?: number;
+};
+export interface IBaseParameters {
+  irff: Record<string, ParametersType>;
+  inss: Record<string, ParametersType>;
 }
