@@ -26,7 +26,7 @@ export interface IRequestSalarioLiquido {
 export interface IResponseSalarioLiquido {
   salarioLiquido: number;
   inss: number;
-  irff: number;
+  irrf: number;
   outrosDescontos: number;
 }
 
@@ -53,6 +53,14 @@ export type ParametersType = {
   deducao?: number;
 };
 export interface IBaseParameters {
-  irff: Record<string, ParametersType>;
+  irrf: Record<string, ParametersType>;
   inss: Record<string, ParametersType>;
+  salarioMinimo: number;
 }
+
+export type DataCalculoIrrfType = {
+  salario: number;
+  inss: number;
+  dependentes: number;
+  pensaoAlimenticia: number;
+};
