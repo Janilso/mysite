@@ -1,5 +1,5 @@
 import { RefObject } from 'react';
 
-export type SectionInitProps = {
+export type SectionProps = {
   ref?: RefObject<HTMLElement | null>;
 };
