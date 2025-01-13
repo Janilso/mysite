@@ -17,4 +17,8 @@ const getMyExperience = () => {
   return now.getFullYear() - initDate.getFullYear();
 };
 
-export { getMyAge, getMyExperience };
+const loadMore = (array: unknown[], range: number, add: number) => {
+  return array?.length > range + add ? range + add : array?.length ?? range;
+};
+
+export { getMyAge, getMyExperience, loadMore };
