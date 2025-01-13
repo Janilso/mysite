@@ -8,10 +8,10 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { Title } from '@/app/components';
-import IconSkill from './IconSkill';
 import { homeStyles } from '../styles';
 import { styles } from './styles';
-import { IconSkillProps } from './IconSkill/types';
+import { IconSkill } from './components';
+import { IconSkillProps } from './components/IconSkill/types';
 
 const SectionSkills: React.FC<SectionProps> = ({ ref }) => {
   const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
