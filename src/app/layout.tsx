@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 import { Exo } from 'next/font/google';
 import { ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@/theme/DefaultTheme';
 import '../theme/global.css';
+import { GOOGLE_ADSENSE, GOOGLE_ANALYTICS } from './utils/variables';
+import GoogleAdsense from './components/GoogleAdsense';
 
 const exo = Exo({
   weight: ['300', '400', '500', '700'],
@@ -52,6 +56,8 @@ export default function RootLayout({
           <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
         </AppRouterCacheProvider>
       </body>
+      <GoogleAnalytics gaId={GOOGLE_ANALYTICS} />
+      <GoogleAdsense client={GOOGLE_ADSENSE} />
     </html>
   );
 }
