@@ -1,28 +1,22 @@
-import React from 'react';
-import { SectionProps } from '../types';
-import {
-  Button,
-  Container,
-  Grid2,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
-import { AnimatedContent, Title } from '@/app/components';
 import { ImagenNotFound } from '@/app/assets/images';
+import { AnimatedContent, Title } from '@/app/components';
+import Project from '@/app/components/Project';
+import { Button, Container, Grid2, Typography } from '@mui/material';
+import React from 'react';
 import { homeStyles } from '../styles';
+import { SectionProps } from '../types';
 import { styles } from './styles';
 import useSectionProject from './useSectionProject';
-import Project from '@/app/components/Project';
 
 const SectionProject: React.FC<SectionProps> = ({ ref }) => {
   const {
     projects,
+    isMd,
     range,
     handleClickMore,
     refItemProject,
     refContainerProjects,
   } = useSectionProject();
-  const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
   return (
     <Grid2
@@ -41,17 +35,17 @@ const SectionProject: React.FC<SectionProps> = ({ ref }) => {
             ref={refContainerProjects}
             container
           >
-            {isMd
-              ? projects?.map((project, key) => (
-                  <Grid2 key={key} sx={styles.projectItem}>
-                    <Project {...project} />
-                  </Grid2>
-                ))
-              : projects?.slice(0, range).map((project, key) => (
-                  <Grid2 ref={refItemProject} key={key}>
-                    <Project {...project} />
-                  </Grid2>
-                ))}
+            {projects
+              ?.slice(0, isMd ? projects.length : range)
+              .map((project, key) => (
+                <Grid2
+                  ref={refItemProject}
+                  sx={isMd ? styles.projectItem : null}
+                  key={key}
+                >
+                  <Project {...project} />
+                </Grid2>
+              ))}
           </Grid2>
 
           {!isMd && projects?.length > 3 ? (

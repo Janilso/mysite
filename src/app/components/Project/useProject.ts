@@ -1,8 +1,9 @@
-// import { Container } from './styles';
-
+import { useMediaQuery } from '@mui/material';
 import { GetProjectName, ProjectTextType } from './types';
 
 const useProject = () => {
+  const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
+
   const projectsText: ProjectTextType = {
     calculo_saque_fgts: 'Cálculo Saque Aniversário FGTS',
     plans_gastos: 'Plans Gastos',
@@ -14,7 +15,7 @@ const useProject = () => {
   const getProjectName: GetProjectName = (name: string = '') =>
     projectsText?.[name] ?? name;
 
-  return { getProjectName };
+  return { getProjectName, isMd };
 };
 
 export default useProject;

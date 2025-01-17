@@ -1,3 +1,4 @@
+'use-client';
 import { useMediaQuery } from '@mui/material';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { UseHeaderProps } from './types';

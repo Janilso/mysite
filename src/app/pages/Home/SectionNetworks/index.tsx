@@ -1,9 +1,9 @@
-import React from 'react';
-import { SectionProps } from '../types';
-import { Container, Grid2, IconButton } from '@mui/material';
-import { AnimatedContent, Title } from '@/app/components';
 import { IconGitHub, IconGmail, IconLinkedIn } from '@/app/assets/icons';
+import { AnimatedContent, Title } from '@/app/components';
+import { Container, Grid2, IconButton } from '@mui/material';
+import React from 'react';
 import { homeStyles } from '../styles';
+import { SectionProps } from '../types';
 
 const SectionNetworks: React.FC<SectionProps> = ({ ref }) => {
   const sizeIcon = {

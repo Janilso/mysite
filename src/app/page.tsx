@@ -1,4 +1,5 @@
 'use client';
+import { useRef } from 'react';
 import { ButtonToTop, Header } from './components';
 import {
   SectionAbout,
@@ -7,11 +8,13 @@ import {
   SectionProject,
   SectionSkills,
 } from './pages/Home';
-import useHomePage from './pages/Home/useHomePage';
 
 export default function Home() {
-  const { refInit, refAbout, refProjects, refSkills, refNetworks } =
-    useHomePage();
+  const refInit = useRef<HTMLElement>(null);
+  const refAbout = useRef<HTMLElement>(null);
+  const refProjects = useRef<HTMLElement>(null);
+  const refSkills = useRef<HTMLElement>(null);
+  const refNetworks = useRef<HTMLElement>(null);
 
   return (
     <>

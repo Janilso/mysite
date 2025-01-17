@@ -1,32 +1,14 @@
-import React from 'react';
-import { SectionProps } from '../types';
-import {
-  Container,
-  Grid2,
-  SxProps,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
 import { IconSkill, Title } from '@/app/components';
-import { homeStyles } from '../styles';
-import { styles } from './styles';
 import { IconSkillProps } from '@/app/components/IconSkill/types';
+import { Container, Grid2, SxProps, Typography } from '@mui/material';
+import React from 'react';
+import { homeStyles } from '../styles';
+import { SectionProps } from '../types';
+import { styles } from './styles';
+import useSectionSkills from './useSectionSkills';
 
 const SectionSkills: React.FC<SectionProps> = ({ ref }) => {
-  const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
-  const types = [
-    'html',
-    'css',
-    'javascript',
-    'typescript',
-    'jest',
-    'flutter',
-    'reactjs',
-    'nextjs',
-    'sass',
-    'git',
-  ];
-
+  const { isMd, types } = useSectionSkills();
   return (
     <Grid2
       component="section"

@@ -1,7 +1,8 @@
+import { ProjectProps } from '../components/Project/types';
 import { BaseParameters, CorsOriginType } from './types';
 
 const BASE_PARAMETERS: BaseParameters = JSON.parse(
-  process.env.BASE_PARAMETERS ?? ''
+  process.env?.BASE_PARAMETERS ?? '{}'
 );
 const CORS_ORIGIN: CorsOriginType = process.env.CORS_ORIGIN?.split(',') ?? [];
 
@@ -20,6 +21,10 @@ const ALLOWED_METHODS: string = process.env.ALLOWED_METHODS ?? '';
 
 const ALLOWED_HEADERS: string = process.env.ALLOWED_HEADERS ?? '';
 
+const PROJECTS: ProjectProps[] = JSON.parse(
+  process.env.NEXT_PUBLIC_PROJECTS ?? ''
+);
+
 export {
   BASE_PARAMETERS,
   CORS_ORIGIN,
@@ -29,4 +34,5 @@ export {
   NEXT_PUBLIC_IMAGE_CARDAPIO,
   ALLOWED_METHODS,
   ALLOWED_HEADERS,
+  PROJECTS,
 };

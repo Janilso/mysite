@@ -7,7 +7,6 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  useMediaQuery,
 } from '@mui/material';
 import useProject from './useProject';
 import { stringCapitalized } from '@/app/utils/normalizers';
@@ -21,9 +20,7 @@ const Project: React.FC<ProjectProps> = ({
   url,
   technologies = [],
 }) => {
-  const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
-
-  const { getProjectName } = useProject();
+  const { getProjectName, isMd } = useProject();
 
   return (
     <Card sx={styles.card} elevation={0}>

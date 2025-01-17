@@ -1,10 +1,10 @@
+import { ImagePrograming } from '@/app/assets/images';
+import { AnimatedContent, Title } from '@/app/components';
 import { Container, Grid2, SxProps, Typography } from '@mui/material';
 import React from 'react';
-import { styles } from './styles';
-import { AnimatedContent, Title } from '@/app/components';
-import { ImagePrograming } from '@/app/assets/images';
 import { homeStyles } from '../styles';
 import { SectionProps } from '../types';
+import { styles } from './styles';
 
 const SectionInit: React.FC<SectionProps> = ({ ref }) => {
   return (

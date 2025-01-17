@@ -1,10 +1,10 @@
-import React from 'react';
-import { SectionProps } from '../types';
-import { Container, Grid2, SxProps, Typography } from '@mui/material';
-import { AnimatedContent, Title } from '@/app/components';
 import { ImageHistory } from '@/app/assets/images';
+import { AnimatedContent, Title } from '@/app/components';
 import { getMyAge, getMyExperience } from '@/app/utils/functions';
+import { Container, Grid2, SxProps, Typography } from '@mui/material';
+import React from 'react';
 import { homeStyles } from '../styles';
+import { SectionProps } from '../types';
 import { styles } from './styles';
 
 const SectionAbout: React.FC<SectionProps> = ({ ref }) => {
