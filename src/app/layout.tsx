@@ -20,6 +20,24 @@ export const metadata: Metadata = {
   de interfaces digitais modernas, intuitivas e responsivas. 
   Uso de linguagens como Dart, Javascript, Typescript e 
   tecnologias como ReactJS, NextJs e Flutter.`,
+  openGraph: {
+    title: 'Janilso Rodrigues - A programmer',
+    description: `Site portifólio de Janilso Rodrigues, 
+  programador frontend web, mobile, backend.`,
+    images: ['https://www.janilso.com.br/favicon.svg'],
+  },
+  icons: {
+    icon: '/favicon.svg',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
